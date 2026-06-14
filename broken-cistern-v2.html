@@ -360,6 +360,19 @@
   </div>
 </section>
 
+<!-- AXIS LOOPS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The existential axes</div>
+      <h2>The deep gravity wells</h2>
+      <p>Underneath every everyday habit and character flaw sits a core axis of human desire and fear. Trace your striving down to the bedrock and discover the primary engine driving your loops. <span style="color:var(--ink-faint)">(These are the root questions you are trying to answer.)</span></p>
+    </div>
+    <div class="tiles reveal" id="axis-tiles"></div>
+    <div class="panelx" id="axis-panelx" aria-live="polite"></div>
+  </div>
+</section>
+
 <!-- GUARDRAILS -->
 <section>
   <div class="wrap reveal">
@@ -577,6 +590,36 @@ function renderFlawPanel(a){flawPanelx.innerHTML=`
     <div class="cell trap full"><div class="k">The works-trap (“just stop / try harder”)</div><div class="v">${a.trap}</div></div>
     <div class="cell grace"><div class="k">↗ Re-source it (grace exit)</div><div class="v">${a.grace}</div></div>
   </div>`;}
+
+/* AXES DATA */
+const AXES=[
+ {i:"🤝",t:"Acceptance vs Rejection",cue:"Feeling isolated, left out, or standard-deficient.",counterfeit:"Morph personality, say yes constantly, perform to fit in.",promises:"Safety, absolute belonging, guaranteed value.",need:"Unconditional, secure love and relational rest.",loop:"Earning acceptance is temporary ➔ identity stays fragile/insecure ➔ fear of rejection rises ➔ performance demand increases.",trap:"“Just love yourself / stop caring what others think.” Suppressing a core relational hunger with sheer willpower.",grace:"Belonging is given before you walk in the room. Love others from overflow, not to buy their verdict."},
+ {i:"🌪️",t:"Control vs Chaos",cue:"Powerlessness, vulnerability, randomness, or high stakes.",counterfeit:"Anxious micromanaging, resource hoarding, obsessive checking.",promises:"Total predictability, safety from failure, anxiety-relief.",need:"Deep internal safety, peace, and trust in a protector.",loop:"Striving for control reveals your limitations ➔ anxiety spikes ➔ you double down on control/checking.",trap:"“Let go and stop worrying.” Forcing peace by ignoring reality.",grace:"Surrendering outcomes to a sovereign, good Source; finding peace in trust, not in absolute certainty."},
+ {i:"🌟",t:"Significance vs Insignificance",cue:"Anonymity, mediocrity, failure, or feeling forgotten.",counterfeit:"Workaholism, credentials-chasing, status-seeking, bragging.",promises:"Intrinsic value, status, proof that you matter.",need:"Secure worth that is entirely independent of output.",loop:"Success is transient ➔ value is tied to your next win ➔ fear of failure grows ➔ striving intensifies.",trap:"“Just optimize your time; work harder to achieve significance.” Earning significance by exhausting yourself.",grace:"Your value is an objective gift, defined by the Source. Act from significance, not for significance."},
+ {i:"☕",t:"Comfort vs Suffering",cue:"Emotional pain, stress, boredom, or hard feelings.",counterfeit:"Numbing out (scrolling, eating, substances), procrastination.",promises:"Anesthetic relief, escape, instant gratification.",need:"Real comfort, rest, and hope in the middle of pain.",loop:"Escape provides brief relief but leaves stress unsolved ➔ pressure builds ➔ anxiety rises ➔ numbing increases.",trap:"“Practice extreme asceticism / white-knuckle through the pain.” Fight the escape with pure grit.",grace:"Comfort that meets you in the suffering. Grieve and feel honestly, sustained by a source that holds you."},
+ {i:"🛡️",t:"Righteousness vs Condemnation",cue:"Guilt, moral slip, or feeling 'unclean' or bad.",counterfeit:"Scrupulosity, moral superiority, judging others' flaws.",promises:"Absolution, moral security, feeling clean.",need:"Pardon, clean conscience, standing before a standard.",loop:"Focus on self-precision exposes more flaws ➔ guilt rises ➔ you judge others or add rules to feel clean.",trap:"“Be more moral / strictly adhere to the law.” Willpower trying to cleanse a stained conscience.",grace:"Imputed righteousness. Stand on 'no condemnation' first; actual goodness flows from a clean, secure heart."}
+];
+const axisTiles=document.getElementById('axis-tiles'),axisPanelx=document.getElementById('axis-panelx');
+function renderAxisPanel(a){axisPanelx.innerHTML=`
+  <div class="panelx-head"><span style="font-size:26px">${a.i}</span>
+    <span class="big">${a.t}</span><span class="sub">the identity axis loop, your version</span></div>
+  <div class="rows">
+    <div class="cell"><div class="k">The core desire / fear</div><div class="v">${a.cue}</div></div>
+    <div class="cell"><div class="k">The counterfeit well</div><div class="v">${a.counterfeit}</div></div>
+    <div class="cell"><div class="k">What it promises</div><div class="v">${a.promises}</div></div>
+    <div class="cell need"><div class="k">The real need underneath</div><div class="v">${a.need}</div></div>
+    <div class="cell loop full"><div class="k">Why it loops (reinforcing feedback)</div><div class="v">${a.loop}</div></div>
+    <div class="cell trap full"><div class="k">The works-trap (“just stop / try harder”)</div><div class="v">${a.trap}</div></div>
+    <div class="cell grace"><div class="k">↗ Re-source it (grace exit)</div><div class="v">${a.grace}</div></div>
+  </div>`;}
+AXES.forEach((a,idx)=>{const b=document.createElement('button');
+  b.className='tile'+(idx===0?' active':'');
+  b.innerHTML=`<span class="ti">${a.i}</span><span class="tl">${a.t}</span>`;
+  b.onclick=()=>{axisTiles.querySelectorAll('.tile').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');renderAxisPanel(a);axisPanelx.scrollIntoView({behavior:'smooth',block:'nearest'});};
+  axisTiles.appendChild(b);});
+renderAxisPanel(AXES[0]);
+
 FLAWS.forEach((a,idx)=>{const b=document.createElement('button');
   b.className='tile'+(idx===0?' active':'');
   b.innerHTML=`<span class="ti">${a.i}</span><span class="tl">${a.t}</span>`;
