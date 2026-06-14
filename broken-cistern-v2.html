@@ -347,6 +347,19 @@
   </div>
 </section>
 
+<!-- FLAW LOOPS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The character flaws translator</div>
+      <h2>When self-improvement loops</h2>
+      <p>Identify a trait you’ve tried to fix by willpower. Notice how the grit-based solution feeds the baseline anxiety, anchoring the flaw deeper into your life. Then: the exit route of received identity. <span style="color:var(--ink-faint)">(These are spiritual gravity wells, not simple bad habits.)</span></p>
+    </div>
+    <div class="tiles reveal" id="flaw-tiles"></div>
+    <div class="panelx" id="flaw-panelx" aria-live="polite"></div>
+  </div>
+</section>
+
 <!-- GUARDRAILS -->
 <section>
   <div class="wrap reveal">
@@ -537,10 +550,40 @@ function renderPanel(a){panelx.innerHTML=`
 ACTS.forEach((a,idx)=>{const b=document.createElement('button');
   b.className='tile'+(idx===0?' active':'');
   b.innerHTML=`<span class="ti">${a.i}</span><span class="tl">${a.t}</span>`;
-  b.onclick=()=>{document.querySelectorAll('.tile').forEach(x=>x.classList.remove('active'));
+  b.onclick=()=>{tiles.querySelectorAll('.tile').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');renderPanel(a);panelx.scrollIntoView({behavior:'smooth',block:'nearest'});};
   tiles.appendChild(b);});
 renderPanel(ACTS[0]);
+
+/* FLAWS DATA */
+const FLAWS=[
+ {i:"⚖️",t:"Perfectionism",cue:"A mistake, fear of failure, or a sense of personal insufficiency.",counterfeit:"Enforce rigid rules, over-prepare, and critical self-evaluation.",promises:"Control, safety from judgment, and proof of worthiness.",need:"Grace to be human, secure love that covers flaws, and rest.",loop:"High standards breed anxiety ➔ small slip happens ➔ self-attack triggers ➔ fear of failure increases ➔ standards rise.",trap:"“Work harder to be flawless; have more discipline next time.” Willpower trying to solve standard-striving.",grace:"Worth received first, not earned by flawless output. Rest in being fully known and fully loved despite errors."},
+ {i:"🛡️",t:"Hyper-Independence",cue:"Vulnerability, needing help, or feeling weak/exposed.",counterfeit:"Refuse assistance, isolate, and do everything yourself.",promises:"Safety, absolute self-reliance, and avoidance of rejection.",need:"Community, support, and secure connection with others.",loop:"Refusing help leads to burnout/exhaustion ➔ confirming the belief that 'no one is there' ➔ deeper self-reliance.",trap:"“I just need to be stronger and more capable.” Sourcing security entirely from self-sufficiency.",grace:"Accepting limits and dependence as a created gift. Admitting weakness is where real connection starts."},
+ {i:"🌋",t:"Control / Anger",cue:"Feeling powerless, threatened, or out-of-control.",counterfeit:"Outbursts, micromanaging, demanding compliance.",promises:"Immediate safety, correcting the wrong, dominance.",need:"Deep internal safety, peace, trust in a good Protector.",loop:"Forcing compliance creates alienation and conflict ➔ the environment gets more chaotic ➔ safety drops ➔ anger increases.",trap:"“Suppress the anger through willpower; grit your teeth.” Management instead of re-sourcing.",grace:"Surrendering control of variables you cannot govern; finding security in a sovereign, loving Source."},
+ {i:"🥀",t:"Martyrdom / Resentment",cue:"Feeling unappreciated, invisible, or overlooked.",counterfeit:"Quiet over-serving, boundary neglect, passive-aggressive remarks.",promises:"Moral superiority, forcing others to appreciate you.",need:"Unconditional validation and feeling seen.",loop:"Serving from deficit leads to exhaustion ➔ resentment builds and leaks out ➔ others pull away ➔ feeling even more unloved.",trap:"“Be nicer; repress the anger; double down on serving.” Willpower fueling the resentment treadmill.",grace:"Sourcing validation from received love first, letting go of the demand to control others' appraisal."},
+ {i:"🏰",t:"Defensiveness / Pride",cue:"Constructive feedback, criticism, or an exposed failure.",counterfeit:"Blaming others, rationalizing mistakes, counter-attacking.",promises:"Protecting self-image, maintaining authority or status.",need:"Security to be wrong without losing basic value.",loop:"Deflection blocks correction/growth ➔ mistakes repeat ➔ more exposure threat ➔ defensiveness intensifies.",trap:"“Force myself to look humble; white-knuckle through critique.” Protecting the self-image by performing humility.",grace:"No condemnation means failure is safe to admit. Your worth is anchored, so critique is not a survival threat."},
+ {i:"🎭",t:"Approval Seeking",cue:"Fear of rejection or potential disapproval.",counterfeit:"Say yes to everything, morph to fit in, manage everyone's mood.",promises:"Safety, belonging, guarantee of love.",need:"Secure, unconditional acceptance.",loop:"Approval earned must be re-earned tomorrow ➔ identity stays fragile ➔ dependency on validation grows.",trap:"“Just stop caring what people think.” Willpower trying to suppress a core relational hunger.",grace:"Identity is already settled outside the room. Loving others from a secure standing, not to obtain one."}
+];
+const flawTiles=document.getElementById('flaw-tiles'),flawPanelx=document.getElementById('flaw-panelx');
+function renderFlawPanel(a){flawPanelx.innerHTML=`
+  <div class="panelx-head"><span style="font-size:26px">${a.i}</span>
+    <span class="big">${a.t}</span><span class="sub">the character flaw loop, your version</span></div>
+  <div class="rows">
+    <div class="cell"><div class="k">The cue / trigger</div><div class="v">${a.cue}</div></div>
+    <div class="cell"><div class="k">The counterfeit routine</div><div class="v">${a.counterfeit}</div></div>
+    <div class="cell"><div class="k">What it promises</div><div class="v">${a.promises}</div></div>
+    <div class="cell need"><div class="k">The real need underneath</div><div class="v">${a.need}</div></div>
+    <div class="cell loop full"><div class="k">Why it loops (reinforcing feedback)</div><div class="v">${a.loop}</div></div>
+    <div class="cell trap full"><div class="k">The works-trap (“just stop / try harder”)</div><div class="v">${a.trap}</div></div>
+    <div class="cell grace"><div class="k">↗ Re-source it (grace exit)</div><div class="v">${a.grace}</div></div>
+  </div>`;}
+FLAWS.forEach((a,idx)=>{const b=document.createElement('button');
+  b.className='tile'+(idx===0?' active':'');
+  b.innerHTML=`<span class="ti">${a.i}</span><span class="tl">${a.t}</span>`;
+  b.onclick=()=>{flawTiles.querySelectorAll('.tile').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');renderFlawPanel(a);flawPanelx.scrollIntoView({behavior:'smooth',block:'nearest'});};
+  flawTiles.appendChild(b);});
+renderFlawPanel(FLAWS[0]);
 
 /* LOOP TOGGLE */
 const note=document.getElementById('loopNote'),ring=document.getElementById('ring'),
