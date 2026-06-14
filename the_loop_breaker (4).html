@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Loop Breaker: Systems Theology & Behavioral Mechanics</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Polyfill / MathJax for rendering gorgeous LaTeX equations -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es6/tex-mml-chtml.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              stone: '#0c0a09', // Warm premium dark base
+              card: '#1c1917',  // stone-900
+              cardLight: '#292524', // stone-800
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              fuchsia: '#d946ef',
+              blue: '#3b82f6',
+              rose: '#f43f5e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0c0a09;
+    }
+    .serif-font {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .mono-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* Styled custom scrollbars */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #1c1917;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #44403c;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #57534e;
+    }
+
+    /* Interactive dripping water droplet animation */
+    @keyframes drip {
+      0% {
+        transform: translateY(0) scaleY(1) scaleX(1);
+        opacity: 0.9;
+      }
+      70% {
+        transform: translateY(110px) scaleY(1.4) scaleX(0.8);
+        opacity: 0.9;
+      }
+      85% {
+        transform: translateY(120px) scaleY(0.7) scaleX(1.3);
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(125px) scaleY(1) scaleX(1);
+        opacity: 0;
+      }
+    }
+    .water-drip {
+      animation: drip 1.5s infinite cubic-bezier(0.4, 0, 1, 1);
+    }
+  </style>
+</head>
+<body class="text-stone-100 min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-white">
+
+  <!-- 🧭 Header -->
+  <header class="border-b border-stone-800 bg-stone-950/90 backdrop-blur-md sticky top-0 z-50 px-4 py-4 sm:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col xl:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <div class="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg shadow-emerald-500/10">
+          <span class="text-3xl block">🔄</span>
+        </div>
+        <div>
+          <h1 class="text-2xl font-black tracking-tight bg-gradient-to-r from-emerald-400 via-blue-400 to-fuchsia-400 bg-clip-text text-transparent font-sans">THE LOOP BREAKER</h1>
+          <p class="text-xs text-stone-400 font-medium">Deconstructing Volatile Identity Mechanics, Behavioral Software, and Received Standings</p>
+        </div>
+      </div>
+      
+      <!-- Responsive Navigation Links -->
+      <nav class="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+        <button onclick="switchTab('theology')" id="btn-theology" class="tab-btn px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-stone-800 text-white border border-stone-700 transition duration-200">
+          📜 Biblical Theology & Physics
+        </button>
+        <button onclick="switchTab('cases')" id="btn-cases" class="tab-btn px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg text-stone-400 hover:text-white hover:bg-stone-800/50 transition duration-200">
+          📖 Scriptural Case Studies
+        </button>
+        <button onclick="switchTab('matrix')" id="btn-matrix" class="tab-btn px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg text-stone-400 hover:text-white hover:bg-stone-800/50 transition duration-200">
+          📊 Everyday Tech Matrix
+        </button>
+        <button onclick="switchTab('simulator')" id="btn-simulator" class="tab-btn px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg text-stone-400 hover:text-white hover:bg-stone-800/50 transition duration-200">
+          ⚡ Sandbox Simulator
+        </button>
+        <button onclick="switchTab('quiz')" id="btn-quiz" class="tab-btn px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg text-stone-400 hover:text-white hover:bg-stone-800/50 transition duration-200">
+          📋 Diagnostic Quiz
+        </button>
+        <button onclick="switchTab('mapper')" id="btn-mapper" class="tab-btn px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg text-stone-400 hover:text-white hover:bg-stone-800/50 transition duration-200">
+          ✍️ Personal Architect
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-8 flex flex-col gap-8">
+
+    <!-- ==================== TAB 1: BIBLICAL THEOLOGY & PHYSICS ==================== -->
+    <section id="tab-theology" class="tab-content flex flex-col gap-8">
+      
+      <!-- Scripture Callout Hero Card -->
+      <div class="relative bg-gradient-to-br from-stone-900 via-stone-950 to-stone-900 border border-stone-800 rounded-3xl p-6 sm:p-10 shadow-2xl overflow-hidden">
+        <div class="absolute top-0 right-0 w-[450px] h-[450px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-[450px] h-[450px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-4xl relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-stone-800/80 border border-stone-700 rounded-full mb-6">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-stone-300">Foundational Anchor Script</span>
+          </div>
+          
+          <blockquote class="serif-font text-2xl sm:text-4xl font-light text-stone-100 italic leading-relaxed">
+            "My people have committed two evils: they have forsaken me, the fountain of living waters, and hewed out cisterns for themselves, broken cisterns that can hold no water."
+          </blockquote>
+          <cite class="block text-sm font-mono text-emerald-400 mt-4 tracking-wider">— Jeremiah 2:13 (ESV)</cite>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-8 border-t border-stone-800 text-stone-400 text-sm sm:text-base">
+            <p class="leading-relaxed">
+              Human behavior operates on a gravity-well rule: <strong>we seek to secure our ultimate source of life, significance, and worth.</strong> When we decouple this hunger from an infinite, received foundation, we are forced to build artificial, self-generated structures to hold up our identity.
+            </p>
+            <p class="leading-relaxed">
+              These self-made containers are structurally volatile. Because they are finite (predicated on career metrics, human applause, physical shape, or app streaks), they leak. We are left trapped on a fast-spinning wheel of self-justification, treating behavioral correction as a performance project.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Visual Flow Roadmap (Enlarged and Deepened) -->
+      <div class="space-y-6">
+        <div class="mb-2">
+          <h3 class="text-2xl font-black text-white tracking-tight flex items-center gap-2">
+            <span>🔄</span> Anatomy of the Self-Reinforcing Striving Engine
+          </h3>
+          <p class="text-sm text-stone-400 mt-1 max-w-3xl">
+            A comprehensive structural analysis of self-reliance. This double-row framework maps the exact sequence of white-knuckled behavior management versus the transformative release point of received standing.
+          </p>
+        </div>
+
+        <!-- Row 1: The Descent (Steps 1, 2, 3) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Box 1: Broken Cistern -->
+          <div class="bg-gradient-to-b from-stone-900 to-stone-950 border border-blue-900/40 rounded-2xl p-6 flex flex-col justify-between hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/5 transition duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b border-stone-800 pb-3">
+                <span class="text-xs font-bold text-blue-400 uppercase tracking-widest font-mono">01. Source Deficit</span>
+                <span class="text-3xl">🪣</span>
+              </div>
+              <h4 class="text-lg font-bold text-stone-100 mb-2">The Broken Cistern</h4>
+              
+              <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+                <p>
+                  <strong class="text-stone-300">Theological Anatomy:</strong> Seeking absolute security and validation from finite, volatile variables (e.g., career milestones, physical attributes, intellectual superiority). In Hebrew, this is <em>borot nishbarim</em>—cisterns that lack an internal spring and dry up instantly.
+                </p>
+                <p>
+                  <strong class="text-stone-300">Neurological Substrate:</strong> Persistent amygdala hyper-alertness. Because your foundational identity has no secure anchor, your nervous system processes minor drops in external metrics as direct threats to your survival.
+                </p>
+              </div>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-stone-800/60">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-blue-300 block mb-1">Baseline Voice</span>
+              <div class="text-xs font-mono text-blue-200 bg-blue-500/10 p-2.5 rounded-lg">
+                "If this metric drops, my basic safety and worth are gone."
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 2: Counterfeit Need -->
+          <div class="bg-gradient-to-b from-stone-900 to-stone-950 border border-amber-900/40 rounded-2xl p-6 flex flex-col justify-between hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/5 transition duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b border-stone-800 pb-3">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-widest font-mono">02. Translate</span>
+                <span class="text-3xl">🎭</span>
+              </div>
+              <h4 class="text-lg font-bold text-stone-100 mb-2">The Counterfeit Need</h4>
+              
+              <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+                <p>
+                  <strong class="text-stone-300">Theological Anatomy:</strong> The conversion of a deep, infinite hunger for love and meaning into a localized, finite object. This is the structural blueprint of idolatry—substituting the Creator's gift with a manageable, earthly target that we can try to control.
+                </p>
+                <p>
+                  <strong class="text-stone-300">Neurological Substrate:</strong> The salience network redirects focus away from the underlying emptiness and onto a short-term, measurable cue. The brain treats hitting a minor metric score as a matters of life and death.
+                </p>
+              </div>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-stone-800/60">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-amber-300 block mb-1">Baseline Voice</span>
+              <div class="text-xs font-mono text-amber-200 bg-amber-500/10 p-2.5 rounded-lg">
+                "I don't need cosmic peace; I just need this streak score."
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 3: Habit Loop -->
+          <div class="bg-gradient-to-b from-stone-900 to-stone-950 border border-red-900/40 rounded-2xl p-6 flex flex-col justify-between hover:border-red-500/50 hover:shadow-lg hover:shadow-red-500/5 transition duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b border-stone-800 pb-3">
+                <span class="text-xs font-bold text-red-400 uppercase tracking-widest font-mono">03. Automate</span>
+                <span class="text-3xl">🔄</span>
+              </div>
+              <h4 class="text-lg font-bold text-stone-100 mb-2">The Habit Loop</h4>
+              
+              <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+                <p>
+                  <strong class="text-stone-300">Theological Anatomy:</strong> Habits as spiritual liturgies. When we are disconnected from rest, we build automated, self-centered routines to escape our baseline anxiety. Our behaviors become repetitive pacifiers that provide quick relief but no lasting healing.
+                </p>
+                <p>
+                  <strong class="text-stone-300">Neurological Substrate:</strong> Basal ganglia automation. Under stress, executive prefrontal control is bypassed, sending you directly down pre-programmed behavioral pathways to find quick sensory rewards.
+                </p>
+              </div>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-stone-800/60">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-red-300 block mb-1">Baseline Voice</span>
+              <div class="text-xs font-mono text-red-200 bg-red-500/10 p-2.5 rounded-lg">
+                "Anxiety triggered ➔ Engage routine ➔ Numb out."
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Row 2: The Struggle & The Breakout (Steps 4, 5, 6) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          <!-- Box 4: Works & Willpower -->
+          <div class="bg-gradient-to-b from-stone-900 to-stone-950 border border-yellow-900/40 rounded-2xl p-6 flex flex-col justify-between hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/5 transition duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b border-stone-800 pb-3">
+                <span class="text-xs font-bold text-yellow-400 uppercase tracking-widest font-mono">04. Self-Justify</span>
+                <span class="text-3xl">🔨</span>
+              </div>
+              <h4 class="text-lg font-bold text-stone-100 mb-2">Works & Willpower</h4>
+              
+              <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+                <p>
+                  <strong class="text-stone-300">Theological Anatomy:</strong> Relying on self-righteousness. Trying to force spiritual and behavioral alignment through self-denial, strict guidelines, and willpower. This treats symptoms of a dry soul with harder labor instead of living water.
+                </p>
+                <p>
+                  <strong class="text-stone-300">Neurological Substrate:</strong> Rapid prefrontal cortex (PFC) resource depletion. Because willpower is a finite energy-consuming executive function, attempting to white-knuckle compliance leads to severe cognitive fatigue.
+                </p>
+              </div>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-stone-800/60">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-yellow-300 block mb-1">Baseline Voice</span>
+              <div class="text-xs font-mono text-yellow-200 bg-yellow-500/10 p-2.5 rounded-lg">
+                "I will double my efforts, restrict my apps, and force success."
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 5: Shame Spiral -->
+          <div class="bg-gradient-to-b from-stone-900 to-stone-950 border border-fuchsia-900/40 rounded-2xl p-6 flex flex-col justify-between hover:border-fuchsia-500/50 hover:shadow-lg hover:shadow-fuchsia-500/5 transition duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b border-stone-800 pb-3">
+                <span class="text-xs font-bold text-fuchsia-400 uppercase tracking-widest font-mono">05. Collapse</span>
+                <span class="text-3xl">💥</span>
+              </div>
+              <h4 class="text-lg font-bold text-stone-100 mb-2">The Shame Spiral</h4>
+              
+              <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+                <p>
+                  <strong class="text-stone-300">Theological Anatomy:</strong> Condemnation. When willpower crashes, a works paradigm interprets failure not as a momentary slip, but as a total evaluation of your worth. Self-recrimination isolates you and drives you right back to your relief habits.
+                </p>
+                <p>
+                  <strong class="text-stone-300">Neurological Substrate:</strong> Amygdala hijack combined with anterior cingulate cortex (ACC) pain signaling. The brain registers shame as physical injury, instantly seeking escape through comforting, automated habits.
+                </p>
+              </div>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-stone-800/60">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-fuchsia-300 block mb-1">Baseline Voice</span>
+              <div class="text-xs font-mono text-fuchsia-200 bg-fuchsia-500/10 p-2.5 rounded-lg">
+                "I failed again. I am completely broken. I need immediate comfort."
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 6: Grace Paradigm -->
+          <div class="bg-gradient-to-b from-stone-900 to-stone-950 border border-emerald-900/40 rounded-2xl p-6 flex flex-col justify-between hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/5 transition duration-300">
+            <div>
+              <div class="flex items-center justify-between mb-4 border-b border-stone-800 pb-3">
+                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest font-mono">06. Breakout</span>
+                <span class="text-3xl">🛡️</span>
+              </div>
+              <h4 class="text-lg font-bold text-emerald-300 mb-2 font-bold">The Grace Paradigm</h4>
+              
+              <div class="space-y-3 text-xs sm:text-sm text-stone-300 leading-relaxed">
+                <p>
+                  <strong class="text-emerald-400">Theological Anatomy:</strong> Imputed righteousness and adopted standing. Your security and worth are anchored outside of yourself as an unearned gift. The cistern is instantly sealed, rendering performance a joyful play rather than a desperate duty.
+                </p>
+                <p>
+                  <strong class="text-emerald-400">Neurological Substrate:</strong> Parasympathetic nervous system activation. Imputed security triggers safety cues that quiet the amygdala and allow prefrontal cognitive resources to rest, recover, and plan constructively.
+                </p>
+              </div>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-stone-800/60">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400 block mb-1">Baseline Voice</span>
+              <div class="text-xs font-mono text-emerald-100 bg-emerald-500/20 p-2.5 rounded-lg font-bold">
+                "I am fully approved, secure, and loved. My limitations are safe."
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== TAB 2: SCRIPTURAL CASE STUDIES ==================== -->
+    <section id="tab-cases" class="tab-content hidden flex flex-col gap-6">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
+        <div>
+          <h2 class="text-2xl font-black text-white">📖 Biblical Case Studies: Core Strivings Unveiled</h2>
+          <p class="text-sm text-stone-400 mt-1">
+            Analyze eight highly detailed profiles of scriptural figures navigating willpower breakdowns, self-justification traps, and somatic restorations.
+          </p>
+        </div>
+        
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap gap-2 self-start">
+          <button onclick="filterCases('all')" id="filter-all" class="case-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-stone-850 text-white border border-stone-700 transition">
+            All Profiles
+          </button>
+          <button onclick="filterCases('willpower')" id="filter-willpower" class="case-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg text-stone-400 hover:text-white hover:bg-stone-850 transition">
+            Willpower Failures
+          </button>
+          <button onclick="filterCases('identity')" id="filter-identity" class="case-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg text-stone-400 hover:text-white hover:bg-stone-850 transition">
+            Identity / Assets
+          </button>
+          <button onclick="filterCases('somatic')" id="filter-somatic" class="case-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg text-stone-400 hover:text-white hover:bg-stone-850 transition">
+            Somatic / Burnout
+          </button>
+        </div>
+      </div>
+
+      <div id="case-studies-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Case 1: Simon Peter -->
+        <div class="case-card bg-stone-900 border border-stone-850 rounded-2xl p-6 hover:border-stone-700 transition flex flex-col justify-between" data-category="willpower">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-800">
+              <span class="text-xs font-mono font-bold text-yellow-400 bg-yellow-500/10 px-2.5 py-1 rounded">WILLPOWER SYSTEM DEFEAT</span>
+              <span class="text-2xl">🔥</span>
+            </div>
+            <h3 class="serif-font text-xl font-bold text-stone-100 mb-1">Simon Peter's Willpower Engine</h3>
+            <p class="text-xs font-mono text-emerald-400 mb-4">Matthew 26:33-35, Luke 22:54-62</p>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+              <p>
+                <strong>The Striving:</strong> Peter based his worth on being the most devoted disciple: <em>"Though they all fall away because of you, I will never fall away."</em> He treated loyalty as a muscle of sheer emotional grit and intellectual resolve.
+              </p>
+              <p>
+                <strong>The Collapse:</strong> In the high priest's courtyard, when confronted by a servant girl, Peter's system was flooded with adrenaline and survival panic. His prefrontal promises failed under stress, leading to immediate denial.
+              </p>
+              <p>
+                <strong>The Shame Loop & Recovery:</strong> Peter wept bitterly, trapped in shame. He remained isolated until John 21, where Jesus restored him not by demanding a stronger performance promise, but by calling him to feed sheep out of simple love.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-850 text-xs italic text-stone-500 font-mono">
+            Key Diagnostic: Willpower is a resource that collapses when self-protection overrides self-control.
+          </div>
+        </div>
+
+        <!-- Case 2: Solomon -->
+        <div class="case-card bg-stone-900 border border-stone-850 rounded-2xl p-6 hover:border-stone-700 transition flex flex-col justify-between" data-category="identity">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-800">
+              <span class="text-xs font-mono font-bold text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded">SYSTEMIC LEAKY CISTERN</span>
+              <span class="text-2xl">👑</span>
+            </div>
+            <h3 class="serif-font text-xl font-bold text-stone-100 mb-1">Solomon's Infinite Consumption</h3>
+            <p class="text-xs font-mono text-emerald-400 mb-4">Ecclesiastes 2:1-11</p>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+              <p>
+                <strong>The Striving:</strong> Solomon attempted to find final satisfaction by building cisterns of performance: massive palaces, sprawling gardens, pools, gold, singing servants, and unmatched wisdom. He kept nothing from his eyes.
+              </p>
+              <p>
+                <strong>The Collapse:</strong> After reviewing his achievements, he noted the ultimate physics of broken cisterns: <em>"Behold, all was vanity and a striving after wind, and there was nothing to be gained under the sun."</em> The container leaked. The thrill of execution left him empty inside 48 hours.
+              </p>
+              <p>
+                <strong>The Insight:</strong> Solomon's journey illustrates the core failure of attempting to solve an infinite, existential deficit of worth using finite, worldly assets.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-850 text-xs italic text-stone-500 font-mono">
+            Key Diagnostic: You cannot satisfy an infinite appetite with a larger pile of finite accomplishments.
+          </div>
+        </div>
+
+        <!-- Case 3: Martha -->
+        <div class="case-card bg-stone-900 border border-stone-850 rounded-2xl p-6 hover:border-stone-700 transition flex flex-col justify-between" data-category="willpower">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-800">
+              <span class="text-xs font-mono font-bold text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded">PERFORMANCE TRAP</span>
+              <span class="text-2xl">🧹</span>
+            </div>
+            <h3 class="serif-font text-xl font-bold text-stone-100 mb-1">Martha's Service Striving</h3>
+            <p class="text-xs font-mono text-emerald-400 mb-4">Luke 10:38-42</p>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+              <p>
+                <strong>The Striving:</strong> Martha welcomed Jesus into her home but became <em>"distracted with much serving."</em> She translated her access to Christ into a task-performance metric, believing her hospitality was the price of her validation.
+              </p>
+              <p>
+                <strong>The Collapse:</strong> Seeing Mary sitting at Jesus' feet, Martha snapped: <em>"Lord, do you not care that my sister has left me to serve alone?"</em> Her baseline stress was elevated because her identity was linked to her performance. Disappointment triggered immediate relational division.
+              </p>
+              <p>
+                <strong>The Correction:</strong> Jesus noted: <em>"Martha, Martha, you are anxious and troubled about many things, but one thing is necessary."</em> She was trying to feed a leaky heart with more service, when she simply needed to receive.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-850 text-xs italic text-stone-500 font-mono">
+            Key Diagnostic: When our work is fueled by insecurity, we end up resenting the very people we claim to serve.
+          </div>
+        </div>
+
+        <!-- Case 4: Apostle Paul -->
+        <div class="case-card bg-stone-900 border border-stone-850 rounded-2xl p-6 hover:border-stone-700 transition flex flex-col justify-between" data-category="willpower">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-800">
+              <span class="text-xs font-mono font-bold text-fuchsia-400 bg-fuchsia-500/10 px-2.5 py-1 rounded">NEUROBIOLOGY OF THE SPLIT SELF</span>
+              <span class="text-2xl">🧠</span>
+            </div>
+            <h3 class="serif-font text-xl font-bold text-stone-100 mb-1">The Apostle Paul's Romans 7 Struggle</h3>
+            <p class="text-xs font-mono text-emerald-400 mb-4">Romans 7:15-25, 8:1</p>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+              <p>
+                <strong>The Split:</strong> Paul documented the frustrating reality of the willpower-works system: <em>"For I do not do what I want, but I do the very thing I hate... For I have the desire to do what is right, but not the ability to carry it out."</em>
+              </p>
+              <p>
+                <strong>The Diagnostic:</strong> He diagnosed that when he relied on the "Law" (performance codes) to produce compliance, it actually aroused further rebellion inside him, leading him to cry out: <em>"Wretched man that I am! Who will deliver me from this body of death?"</em>
+              </p>
+              <p>
+                <strong>The Breakout:</strong> The breakout is not a stronger promise to try harder; it is the absolute paradigm shift of Romans 8: <em>"There is therefore now no condemnation for those who are in Christ Jesus."</em>
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-850 text-xs italic text-stone-500 font-mono">
+            Key Diagnostic: Rules excite rebellion; only the absolute absence of condemnation shuts down the striving engine.
+          </div>
+        </div>
+
+        <!-- Case 5: King Saul -->
+        <div class="case-card bg-stone-900 border border-stone-850 rounded-2xl p-6 hover:border-stone-700 transition flex flex-col justify-between" data-category="identity">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-800">
+              <span class="text-xs font-mono font-bold text-blue-400 bg-blue-500/10 px-2.5 py-1 rounded">SOCIAL APPROVAL DEPENDENCY</span>
+              <span class="text-2xl">👑</span>
+            </div>
+            <h3 class="serif-font text-xl font-bold text-stone-100 mb-1">King Saul's People-Pleasing Insecurity</h3>
+            <p class="text-xs font-mono text-emerald-400 mb-4">1 Samuel 15:24, 18:6-9</p>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+              <p>
+                <strong>The Striving:</strong> Saul was chosen as king, yet he lacked a secure identity. He hewed a cistern of social approval, placing his confidence in public applause and the admiration of his soldiers rather than God's standing.
+              </p>
+              <p>
+                <strong>The Collapse:</strong> In 1 Samuel 15, Saul violated direct commands because he <em>"feared the people and obeyed their voice."</em> Later, hearing the crowds sing, <em>"Saul has struck down his thousands, and David his ten thousands,"</em> his system spiraled into comparison, jealousy, and paranoia.
+              </p>
+              <p>
+                <strong>The Shame Loop:</strong> Saul spent the rest of his life in a hostile, paranoid loop trying to defend his crown by force, eventually losing both his mind and his kingdom to a self-reinforcing fight-or-flight crisis.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-850 text-xs italic text-stone-500 font-mono">
+            Key Diagnostic: If your identity depends on human applause, you are at the mercy of their next comparison.
+          </div>
+        </div>
+
+        <!-- Case 6: The Elder Brother -->
+        <div class="case-card bg-stone-900 border border-stone-850 rounded-2xl p-6 hover:border-stone-700 transition flex flex-col justify-between" data-category="identity">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-800">
+              <span class="text-xs font-mono font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded">THE DEBT & TRANSACTION ENGINE</span>
+              <span class="text-2xl">🐏</span>
+            </div>
+            <h3 class="serif-font text-xl font-bold text-stone-100 mb-1">The Elder Brother's Performance Ledger</h3>
+            <p class="text-xs font-mono text-emerald-400 mb-4">Luke 15:25-32</p>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+              <p>
+                <strong>The Striving:</strong> The elder brother stayed home and labored meticulously. However, his service was not an act of joyful relationship, but a transaction. He kept a precise performance ledger: <em>"Look, these many years I have served you, and I never disobeyed your command."</em>
+              </p>
+              <p>
+                <strong>The Collapse:</strong> When the prodigal son returned and received a free feast of grace, the elder brother's transaction system fell apart. He became angry and refused to go in, furious that his obedience had not bought him superior leverage.
+              </p>
+              <p>
+                <strong>The Insight:</strong> His anger revealed that he was just as alienated from his father's love as his run-away brother. He was trying to earn what was already his by inheritance: <em>"Son, you are always with me, and all that is mine is yours."</em>
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-850 text-xs italic text-stone-500 font-mono">
+            Key Diagnostic: Legalism treats relationships as transactions, producing deep resentment toward both grace and the receiver.
+          </div>
+        </div>
+
+        <!-- Case 7: The Rich Young Ruler -->
+        <div class="case-card bg-stone-900 border border-stone-850 rounded-2xl p-6 hover:border-stone-700 transition flex flex-col justify-between" data-category="identity">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-800">
+              <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">ETHICAL ASSET IDOLATRY</span>
+              <span class="text-2xl">💰</span>
+            </div>
+            <h3 class="serif-font text-xl font-bold text-stone-100 mb-1">The Rich Young Ruler's Compliance Sheet</h3>
+            <p class="text-xs font-mono text-emerald-400 mb-4">Mark 10:17-22</p>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+              <p>
+                <strong>The Striving:</strong> This young man possessed immense material wealth and an impeccable moral record. When asking about eternal life, he declared: <em>"All these [commandments] I have kept from my youth."</em> He relied on his ethical compliance as his security.
+              </p>
+              <p>
+                <strong>The Collapse:</strong> Jesus targeted his true cistern by testing his security: <em>"Go, sell all that you have and give to the poor... and come, follow me."</em> Confronted with losing his physical status and financial assets, the young man went away sorrowful.
+              </p>
+              <p>
+                <strong>The Insight:</strong> His moral performance was a protective shield. He was using obedience to maintain autonomy, rather than surrendering to a received relationship with God.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-850 text-xs italic text-stone-500 font-mono">
+            Key Diagnostic: True surrender begins where your moral compliance and financial assets fail to buy you security.
+          </div>
+        </div>
+
+        <!-- Case 8: Elijah -->
+        <div class="case-card bg-stone-900 border border-stone-850 rounded-2xl p-6 hover:border-stone-700 transition flex flex-col justify-between" data-category="somatic">
+          <div>
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-800">
+              <span class="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded">SOMATIC RECOVERY & SOVEREIGN REST</span>
+              <span class="text-2xl">⛰️</span>
+            </div>
+            <h3 class="serif-font text-xl font-bold text-stone-100 mb-1">Elijah's Somatic Burnout</h3>
+            <p class="text-xs font-mono text-emerald-400 mb-4">1 Kings 19:1-18</p>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-stone-400 leading-relaxed">
+              <p>
+                <strong>The Striving:</strong> After defeating the prophets of Baal, Elijah faced a death threat from Jezebel. His physical system crashed. Flooded with fatigue and isolation, he ran into the wilderness and collapsed: <em>"It is enough; now, O Lord, take away my life."</em>
+              </p>
+              <p>
+                <strong>The Somatic Grace:</strong> God did not lecture Elijah or demand he perform harder. Instead, God targeted his physical exhaustion: an angel twice provided him cake and water, commanding him to sleep. God restored his nervous system somatic first.
+              </p>
+              <p>
+                <strong>The Gentle Whisper:</strong> Once Elijah was fed and rested, God met him not in the violent wind, earthquake, or fire, but in a <em>"low whispering voice"</em> of absolute relational peace, reassuring him and giving him a sustainable team.
+              </p>
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-stone-850 text-xs italic text-stone-500 font-mono">
+            Key Diagnostic: Sometimes the most spiritual action you can take is to eat a meal and take a nap.
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== TAB 3: EVERYDAY TECH MATRIX ==================== -->
+    <section id="tab-matrix" class="tab-content hidden flex flex-col gap-6">
+      
+      <div class="bg-stone-900 border border-stone-800 rounded-2xl p-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 class="text-xl font-bold text-white">📊 The Everyday Systems Matrix</h3>
+            <p class="text-xs text-stone-400 mt-1">
+              Scroll through the comparative mapping of everyday digital tools to see how modern products leverage this psychological cycle.
+            </p>
+          </div>
+          <span class="text-[10px] font-mono text-stone-500 bg-stone-950 px-3 py-1 rounded-md border border-stone-800 self-start">Comprehensive Unified Mapping</span>
+        </div>
+
+        <div class="overflow-x-auto custom-scrollbar border border-stone-800 rounded-xl">
+          <table class="w-full text-left border-collapse min-w-[1000px]">
+            <thead>
+              <tr class="bg-stone-950 text-[10px] uppercase tracking-wider text-stone-400 font-mono border-b border-stone-800">
+                <th class="p-4 border-r border-stone-800 w-1/6">Life Arena</th>
+                <th class="p-4 border-r border-stone-800 w-1/5">Broken Cistern (Existential Leak)</th>
+                <th class="p-4 border-r border-stone-800 w-1/5">Tech Platforms / Services</th>
+                <th class="p-4 border-r border-stone-800 w-1/5">The "Works" (Willpower Loop)</th>
+                <th class="p-4 border-r border-stone-800 w-1/5">The Shame Trigger</th>
+                <th class="p-4 text-emerald-400 font-bold">The Grace Paradigm Shift</th>
+              </tr>
+            </thead>
+            <tbody class="text-xs divide-y divide-stone-800 text-stone-300">
+              
+              <!-- Row 1 -->
+              <tr class="hover:bg-stone-850/50 transition">
+                <td class="p-4 border-r border-stone-800 font-bold text-white">
+                  💼 Career & Impact
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  Seeking proof that my existence is useful, special, and not a waste of cosmic space.
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  <span class="text-amber-400 font-semibold block">LinkedIn, Notion Planners, Todoist</span>
+                  <span class="text-[10px] text-stone-500">Inbox Zero tracking, color-coded tasks, priority tags.</span>
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  Meticulously organizing every 15-minute slot. Replying immediately to late Slack messages to prove irreplacability.
+                </td>
+                <td class="p-4 border-r border-stone-800 text-rose-400 font-medium">
+                  Missing a calendar deadline; seeing a colleague's promotion announcement on your feed.
+                </td>
+                <td class="p-4 text-stone-300">
+                  <span class="text-emerald-400 font-bold block">Status is Unconditional</span>
+                  Your labor is a way to serve others out of overflow, not to earn a basic license to exist.
+                </td>
+              </tr>
+
+              <!-- Row 2 -->
+              <tr class="hover:bg-stone-850/50 transition">
+                <td class="p-4 border-r border-stone-800 font-bold text-white">
+                  🍏 Wellness & Fitness
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  Attempting to secure absolute control over bodily decay, physical aging, and worth.
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  <span class="text-amber-400 font-semibold block">MyFitnessPal, Apple Watch, Strava</span>
+                  <span class="text-[10px] text-stone-500">Calorie tracking scales, daily exercise rings, HR stats.</span>
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  Weighing food to the single gram. Working out as violent self-punishment for eating cake.
+                </td>
+                <td class="p-4 border-r border-stone-800 text-rose-400 font-medium">
+                  Breaking a 100-day Apple Watch ring streak; seeing "Calorie limit exceeded" in bright red.
+                </td>
+                <td class="p-4 text-stone-300">
+                  <span class="text-emerald-400 font-bold block">My Body is a Gift</span>
+                  Your body is cared for as an instrument, not worshipped as an idol. Rest is a mandatory element, not earned.
+                </td>
+              </tr>
+
+              <!-- Row 3 -->
+              <tr class="hover:bg-stone-850/50 transition">
+                <td class="p-4 border-r border-stone-800 font-bold text-white">
+                  📱 Attention & Escapes
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  Seeking rescue from internal silence, heavy boredom, and quiet isolation.
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  <span class="text-amber-400 font-semibold block">TikTok, Opal, Freedom App</span>
+                  <span class="text-[10px] text-stone-500">Gamified blocker apps, nested restriction timers.</span>
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  Trying to enforce quiet screen hours by locking devices with complicated keys and self-shaming.
+                </td>
+                <td class="p-4 border-r border-stone-800 text-rose-400 font-medium">
+                  Clicking "Ignore App Limit" 4 times in a row; seeing Sunday screen time report jump +25%.
+                </td>
+                <td class="p-4 text-stone-300">
+                  <span class="text-emerald-400 font-bold block">Quiet is Not a Threat</span>
+                  The universe is held securely in hands larger than yours. You don't need to surveil the globe to survive.
+                </td>
+              </tr>
+
+              <!-- Row 4 -->
+              <tr class="hover:bg-stone-850/50 transition">
+                <td class="p-4 border-r border-stone-800 font-bold text-white">
+                  🧠 Mind & Intellect
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  Seeking proof that I am smart, cultured, and intellectually superior to peers.
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  <span class="text-amber-400 font-semibold block">Duolingo, Goodreads, Substack</span>
+                  <span class="text-[10px] text-stone-500">Language streaks, annual reading target challenges.</span>
+                </td>
+                <td class="p-4 border-r border-stone-800">
+                  Reading books you hate just to tick a number box; completing midnight lessons strictly to avoid streak loss.
+                </td>
+                <td class="p-4 border-r border-stone-800 text-rose-400 font-medium">
+                  Passive-aggressive reminders from Duolingo's mascot; falling 3 books behind on your goal.
+                </td>
+                <td class="p-4 text-stone-300">
+                  <span class="text-emerald-400 font-bold block">Curiosity is Play</span>
+                  Learning is a pure expression of curiosity, not a scoreboard to construct a hierarchy.
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== TAB 4: SANDBOX ENGINE SIMULATOR ==================== -->
+    <section id="tab-simulator" class="tab-content hidden flex flex-col gap-6">
+      
+      <div class="bg-stone-900 border border-stone-800 rounded-3xl p-6 shadow-xl">
+        <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-6 mb-6">
+          <div>
+            <h2 class="text-2xl font-black text-white flex items-center gap-2">
+              ⚡ Multi-Parameter Sandbox Simulator & Leak Visualizer
+            </h2>
+            <p class="text-sm text-stone-400 mt-1">
+              Watch how our systems process tension in real-time. Tweak physical variables, trigger day events, and watch the curves update.
+            </p>
+          </div>
+          
+          <!-- Mathematical Equation Sheet -->
+          <div class="bg-stone-950 p-4 rounded-xl border border-stone-800 self-start">
+            <div class="text-[10px] font-mono text-stone-500 uppercase mb-2">Governing Physics Equations</div>
+            <div class="text-xs text-stone-300 space-y-1.5 font-sans leading-relaxed">
+              <p>
+                <strong>Works Paradigm:</strong> 
+                $$\frac{dW}{dt} = -k \cdot S(t) \cdot (1 - I_c) - F_{shame} \cdot Sh(t)$$
+                <span class="text-[10px] text-amber-400 block font-mono">Where $W$ is willpower, $S$ is stress, $I_c$ is cistern integrity ($I_c=0$ in Works), and $Sh$ is active shame.</span>
+              </p>
+              <p class="mt-2">
+                <strong>Grace Paradigm:</strong> 
+                $$\frac{dW}{dt} = g \cdot G \quad \text{and} \quad S(t) \rightarrow 0$$
+                <span class="text-[10px] text-emerald-400 block font-mono">Where $G$ represents the active grace anchor, automatically stabilizing the reservoir.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulator Container Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Left Workspace (Visualizer & Logs) -->
+          <div class="lg:col-span-8 flex flex-col gap-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <!-- Metric 1 -->
+              <div class="bg-stone-950 p-4 rounded-xl border border-stone-800">
+                <span class="text-xs text-stone-500 font-mono block mb-1">WILLPOWER ENGINE ($W$)</span>
+                <div class="flex items-baseline gap-2">
+                  <span id="sim-willpower-val" class="text-3xl font-black text-amber-500">100</span>
+                  <span class="text-xs text-stone-500">% capacity</span>
+                </div>
+                <div class="w-full bg-stone-800 h-2 rounded-full mt-3 overflow-hidden">
+                  <div id="sim-willpower-bar" class="bg-amber-500 h-full transition-all duration-300" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <!-- Metric 2 -->
+              <div class="bg-stone-950 p-4 rounded-xl border border-stone-800">
+                <span class="text-xs text-stone-500 font-mono block mb-1">SYSTEMIC ANXIETY ($S$)</span>
+                <div class="flex items-baseline gap-2">
+                  <span id="sim-stress-val" class="text-3xl font-black text-red-500">10</span>
+                  <span class="text-xs text-stone-500">% pressure</span>
+                </div>
+                <div class="w-full bg-stone-800 h-2 rounded-full mt-3 overflow-hidden">
+                  <div id="sim-stress-bar" class="bg-red-500 h-full transition-all duration-300" style="width: 10%"></div>
+                </div>
+              </div>
+
+              <!-- Metric 3 -->
+              <div class="bg-stone-950 p-4 rounded-xl border border-stone-800">
+                <span class="text-xs text-stone-500 font-mono block mb-1">SHAME SPIRAL LEVEL</span>
+                <div class="flex items-baseline gap-2">
+                  <span id="sim-shame-val" class="text-3xl font-black text-fuchsia-500">0</span>
+                  <span class="text-xs text-stone-500">% self-attack</span>
+                </div>
+                <div class="w-full bg-stone-800 h-2 rounded-full mt-3 overflow-hidden">
+                  <div id="sim-shame-bar" class="bg-fuchsia-500 h-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Live visual components (Cistern visualization & line graph) -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+              
+              <!-- SVG Visualizer of dripping cistern (Left) -->
+              <div class="md:col-span-4 bg-stone-950 border border-stone-800 rounded-xl p-4 flex flex-col items-center justify-center">
+                <span class="text-[10px] font-mono text-stone-500 mb-2 block uppercase text-center">Interactive Reservoir Visual</span>
+                
+                <div class="relative w-32 h-44 flex items-center justify-center">
+                  <!-- SVG Bucket drawing representing the cistern -->
+                  <svg class="w-24 h-28" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Bucket Body -->
+                    <path d="M10 20 L25 110 L75 110 L90 20 Z" stroke="#57534e" stroke-width="3" fill="#1c1917" />
+                    <!-- Crack indicators on bucket -->
+                    <path d="M45 50 L52 65 L48 80" stroke="#f43f5e" stroke-width="2" id="cistern-crack-line" />
+                    <path d="M52 65 L60 70" stroke="#f43f5e" stroke-width="2" />
+                    <!-- Water representation inside the bucket -->
+                    <path id="cistern-water-fill" d="M14 55 L25 110 L75 110 L86 55 Z" fill="#3b82f6" fill-opacity="0.6" />
+                    <!-- Falling Droplet animates vertically -->
+                    <circle id="water-droplet" cx="50" cy="80" r="4.5" fill="#3b82f6" class="water-drip" />
+                  </svg>
+                  
+                  <!-- Label inside cistern -->
+                  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10px] font-mono text-stone-400 font-bold" id="cistern-label">
+                    LEAKY
+                  </div>
+                </div>
+                
+                <span class="text-[10px] text-stone-500 mt-2 text-center" id="visualizer-status">Dripping frequency matches your cistern leak rate configuration.</span>
+              </div>
+
+              <!-- Real-time Plotting Canvas (Right) -->
+              <div class="md:col-span-8 bg-stone-950 border border-stone-800 rounded-xl p-4 flex flex-col justify-between">
+                <div>
+                  <span class="text-[10px] font-mono text-stone-500 block mb-2">Real-time Curve plots (Willpower = Amber/Emerald, Stress = Red, Shame = Fuchsia)</span>
+                  <div class="relative w-full h-36 bg-stone-950/50 border border-stone-900 rounded overflow-hidden">
+                    <canvas id="decayChart" class="w-full h-full block"></canvas>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Sandbox controls panel -->
+            <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-stone-950 rounded-xl border border-stone-800">
+              <div class="flex flex-wrap gap-2">
+                <button onclick="startSimulation()" id="btn-start" class="px-5 py-2.5 rounded-lg text-xs font-extrabold bg-emerald-500 text-black hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/10">
+                  ▶ Run Day Engine
+                </button>
+                <button onclick="pauseSimulation()" id="btn-pause" class="px-4 py-2.5 rounded-lg text-xs font-bold bg-stone-800 text-stone-400 hover:text-white transition" disabled>
+                  ⏸ Pause
+                </button>
+                <button onclick="resetSimulation()" class="px-4 py-2.5 rounded-lg text-xs font-bold bg-stone-900 text-stone-500 hover:text-stone-300 transition">
+                  🔄 Reset
+                </button>
+              </div>
+
+              <div class="text-[10px] font-mono text-stone-500 uppercase tracking-widest bg-stone-900 px-3 py-1.5 rounded border border-stone-800">
+                ACTIVE STATUS: <span id="active-status-text" class="text-amber-400 font-bold">STRESS DETECTED (WORKS)</span>
+              </div>
+            </div>
+
+            <!-- Day Events Ledger Panel -->
+            <div class="bg-stone-950 border border-stone-800 rounded-xl p-5">
+              <h4 class="text-xs font-mono text-stone-400 uppercase tracking-wider mb-3">⚡ Inject Everyday Events into the Ledger:</h4>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <button onclick="injectEvent('notification')" class="p-3 bg-stone-900 border border-stone-800 hover:border-red-500/50 rounded-xl text-left transition hover:bg-stone-950 font-sans">
+                  <span class="text-base block mb-1">💬</span>
+                  <span class="text-xs font-bold text-stone-200 block">Slack Alert at 10 PM</span>
+                  <span class="text-[10px] text-stone-500 leading-tight block mt-0.5">+15 Stress. Must defend standing.</span>
+                </button>
+                <button onclick="injectEvent('missed')" class="p-3 bg-stone-900 border border-stone-800 hover:border-fuchsia-500/50 rounded-xl text-left transition hover:bg-stone-950 font-sans">
+                  <span class="text-base block mb-1">🏃‍♂️</span>
+                  <span class="text-xs font-bold text-stone-200 block">Missed Goal/Streak</span>
+                  <span class="text-[10px] text-stone-500 leading-tight block mt-0.5">+20 Shame. Performance broken.</span>
+                </button>
+                <button onclick="injectEvent('comparison')" class="p-3 bg-stone-900 border border-stone-800 hover:border-amber-500/50 rounded-xl text-left transition hover:bg-stone-950 font-sans font-sans">
+                  <span class="text-base block mb-1">🔍</span>
+                  <span class="text-xs font-bold text-stone-200 block">LinkedIn Feed Scroll</span>
+                  <span class="text-[10px] text-stone-500 leading-tight block mt-0.5">+10 Stress. Peers are exceeding.</span>
+                </button>
+                <button onclick="injectEvent('reassurance')" class="p-3 bg-stone-900 border border-stone-800 hover:border-emerald-500/50 rounded-xl text-left transition hover:bg-stone-950 font-sans font-sans">
+                  <span class="text-base block mb-1">🛡️</span>
+                  <span class="text-xs font-bold text-stone-200 block">Rest in Secure Status</span>
+                  <span class="text-[10px] text-stone-500 leading-tight block mt-0.5">-25 Stress. Sealing leak with truth.</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Parameter Configuration and Terminal Panel (Right) -->
+          <div class="lg:col-span-4 flex flex-col gap-4">
+            
+            <!-- Paradigm Selector -->
+            <div class="bg-stone-950 border border-stone-800 rounded-xl p-5 flex flex-col gap-4">
+              <span class="text-xs font-mono text-stone-400 uppercase">Operational Paradigm</span>
+              
+              <div class="grid grid-cols-2 gap-2">
+                <button onclick="setParadigm('works')" id="par-btn-works" class="p-3 rounded-lg border border-amber-500/50 bg-amber-500/10 text-amber-400 font-bold text-xs transition flex flex-col items-center gap-1 font-sans">
+                  <span>🔨</span> Works (Performance)
+                </button>
+                <button onclick="setParadigm('grace')" id="par-btn-grace" class="p-3 rounded-lg border border-stone-800 bg-stone-900 text-stone-500 font-semibold text-xs transition flex flex-col items-center gap-1 font-sans">
+                  <span>🛡️</span> Grace (Gift)
+                </button>
+              </div>
+
+              <div class="p-3 bg-stone-900/40 rounded-lg border border-stone-800">
+                <span class="text-[10px] font-mono text-stone-500 uppercase block mb-1">Paradigm Summary</span>
+                <p id="paradigm-description" class="text-xs text-stone-400 leading-relaxed font-sans">
+                  <strong>Works Mode:</strong> Your worth is volatile and leaky. You must run behaviors to validate yourself. This causes an automatic tax on daily willpower.
+                </p>
+              </div>
+            </div>
+
+            <!-- Interactive Variables Sliders -->
+            <div class="bg-stone-950 border border-stone-800 rounded-xl p-5 flex flex-col gap-4">
+              <span class="text-xs font-mono text-stone-400 uppercase">System Variables (\(k, F_s, g\))</span>
+              
+              <!-- Variable 1: k_leak -->
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-stone-400 font-bold">Cistern Leak Rate (\(k\))</span>
+                  <span id="label-leak" class="text-blue-400 font-mono">0.8</span>
+                </div>
+                <input type="range" id="param-leak" min="0.1" max="2.0" step="0.1" value="0.8" class="w-full bg-stone-800 rounded-lg appearance-none h-1 focus:outline-none" oninput="updateSlidersFromUI()">
+                <span class="text-[9px] text-stone-500 block mt-1">Multiplier of stress affecting daily depletion rates.</span>
+              </div>
+
+              <!-- Variable 2: F_shame -->
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-stone-400 font-bold">Shame Feedback Gain (\(F_s\))</span>
+                  <span id="label-shame" class="text-fuchsia-400 font-mono">1.5</span>
+                </div>
+                <input type="range" id="param-shame" min="0.5" max="3.0" step="0.1" value="1.5" class="w-full bg-stone-800 rounded-lg appearance-none h-1 focus:outline-none" oninput="updateSlidersFromUI()">
+                <span class="text-[9px] text-stone-500 block mt-1">Speed at which failure events accelerate system anxiety.</span>
+              </div>
+
+              <!-- Variable 3: g_grace -->
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-stone-400 font-bold">Grace Anchor Recovery (\(g\))</span>
+                  <span id="label-grace" class="text-emerald-400 font-mono">1.5</span>
+                </div>
+                <input type="range" id="param-grace" min="0.5" max="3.0" step="0.1" value="1.5" class="w-full bg-stone-800 rounded-lg appearance-none h-1 focus:outline-none" oninput="updateSlidersFromUI()">
+                <span class="text-[9px] text-stone-500 block mt-1">How rapidly identity anchoring neutralizes system fatigue curves.</span>
+              </div>
+            </div>
+
+            <!-- Diagnostic logs terminal -->
+            <div class="bg-stone-950 border border-stone-800 rounded-xl p-5 flex-grow flex flex-col min-h-[160px]">
+              <div class="flex items-center justify-between border-b border-stone-800 pb-3 mb-3">
+                <span class="text-xs font-mono text-stone-400 uppercase">Diagnostic Logs</span>
+                <span id="terminal-pulse" class="w-2.5 h-2.5 rounded-full bg-zinc-750"></span>
+              </div>
+              <div id="sim-logs" class="text-[11px] font-mono text-stone-400 h-36 overflow-y-auto custom-scrollbar space-y-2">
+                <div class="text-stone-600 italic">[09:00 AM] System resting. Set paradigm and run.</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== TAB 5: APP VULNERABILITY QUIZ ==================== -->
+    <section id="tab-quiz" class="tab-content hidden flex flex-col gap-6">
+      <div class="bg-stone-900 border border-stone-800 rounded-3xl p-6 shadow-xl max-w-4xl mx-auto w-full">
+        <div class="border-b border-stone-800 pb-4 mb-6">
+          <span class="text-xs font-bold text-fuchsia-400 bg-fuchsia-500/10 px-3 py-1 rounded-full uppercase tracking-widest font-sans">Self-Diagnostic Matrix</span>
+          <h2 class="text-2xl font-black text-white mt-3 font-sans">Is Your App Secretly Running a Striving Loop?</h2>
+          <p class="text-stone-400 text-sm mt-1 leading-relaxed font-sans">
+            Select an app or utility you use daily, and check all behavioral design patterns that apply. Our algorithms will diagnostic your Systemic Anxiety risk.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          
+          <!-- Checkboxes inputs panel -->
+          <div class="space-y-4">
+            <h4 class="text-xs font-mono text-stone-400 uppercase tracking-wider">Select Threat Factors:</h4>
+            
+            <label class="flex items-start gap-3 p-3 bg-stone-950/50 rounded-xl border border-stone-800 hover:bg-stone-950 hover:border-stone-700 cursor-pointer transition">
+              <input type="checkbox" class="quiz-check mt-1 w-4 h-4 rounded text-fuchsia-500 bg-stone-900 border-stone-800 focus:ring-fuchsia-500" onchange="calculateQuizScore()">
+              <div class="font-sans">
+                <span class="text-xs font-bold text-stone-200 block">Absolute Streak Counter</span>
+                <p class="text-[11px] text-stone-500 mt-0.5">App tracks days-in-a-row; resets completely to zero on a single day of failure.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-3 bg-stone-950/50 rounded-xl border border-stone-800 hover:bg-stone-950 hover:border-stone-700 cursor-pointer transition">
+              <input type="checkbox" class="quiz-check mt-1 w-4 h-4 rounded text-fuchsia-500 bg-stone-900 border-stone-800 focus:ring-fuchsia-500" onchange="calculateQuizScore()">
+              <div class="font-sans">
+                <span class="text-xs font-bold text-stone-200 block">Critical Red Alert Badges</span>
+                <p class="text-[11px] text-stone-500 mt-0.5">Overdue items, missed tasks, or empty targets are highlighted in bright crimson red.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-3 bg-stone-950/50 rounded-xl border border-stone-800 hover:bg-stone-950 hover:border-stone-700 cursor-pointer transition">
+              <input type="checkbox" class="quiz-check mt-1 w-4 h-4 rounded text-fuchsia-500 bg-stone-900 border-stone-800 focus:ring-fuchsia-500" onchange="calculateQuizScore()">
+              <div class="font-sans">
+                <span class="text-xs font-bold text-stone-200 block">Disappointed Avatar / Disappointment Nudges</span>
+                <p class="text-[11px] text-stone-500 mt-0.5">App mascot or dashboard displays negative expressions when metric is incomplete.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-3 bg-stone-950/50 rounded-xl border border-stone-800 hover:bg-stone-950 hover:border-stone-700 cursor-pointer transition">
+              <input type="checkbox" class="quiz-check mt-1 w-4 h-4 rounded text-fuchsia-500 bg-stone-900 border-stone-800 focus:ring-fuchsia-500" onchange="calculateQuizScore()">
+              <div class="font-sans">
+                <span class="text-xs font-bold text-stone-200 block">Public Competitions & Leaderboards</span>
+                <p class="text-[11px] text-stone-500 mt-0.5">Your score is ranked alongside friends or strangers continuously.</p>
+              </div>
+            </label>
+
+            <label class="flex items-start gap-3 p-3 bg-stone-950/50 rounded-xl border border-stone-800 hover:bg-stone-950 hover:border-stone-700 cursor-pointer transition">
+              <input type="checkbox" class="quiz-check mt-1 w-4 h-4 rounded text-fuchsia-500 bg-stone-900 border-stone-800 focus:ring-fuchsia-500" onchange="calculateQuizScore()">
+              <div class="font-sans">
+                <span class="text-xs font-bold text-stone-200 block">Guilt-Inducing Push Notifications</span>
+                <p class="text-[11px] text-stone-500 mt-0.5">App reminders emphasize deficit, lack of consistency, or urgent targets.</p>
+              </div>
+            </label>
+          </div>
+
+          <!-- Diagnostic Results display -->
+          <div class="bg-stone-950 border border-stone-800 rounded-2xl p-6 flex flex-col justify-between h-full min-h-[340px]">
+            <div>
+              <div class="flex items-center justify-between border-b border-stone-800 pb-3 mb-4">
+                <span class="text-xs font-mono text-stone-500">DIAGNOSTIC OUTCOME</span>
+                <span class="text-xs font-mono text-stone-400" id="quiz-selected-count">0 of 5 checked</span>
+              </div>
+
+              <div class="flex flex-col items-center justify-center py-6 text-center font-sans">
+                <span class="text-xs text-stone-400 font-medium">SYSTEMIC THREAT RANK</span>
+                <span id="quiz-score-num" class="text-6xl font-black text-stone-600 mt-2">0%</span>
+                <span id="quiz-verdict" class="text-xs font-bold uppercase tracking-wider text-stone-500 mt-3">Innocent Utility</span>
+              </div>
+
+              <div class="p-4 bg-stone-900/60 rounded-xl border border-stone-800 mt-4 text-xs text-stone-400 leading-relaxed font-sans" id="quiz-explanation">
+                A basic utility tool with no predatory behavioral traps. Completely harmless to human identity.
+              </div>
+            </div>
+
+            <div class="text-[10px] text-stone-600 italic text-center mt-6">
+              "When an operational utility turns into a performance scoreboard, a helpful tool transforms into a spiritual whip."
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 6: PERSONAL ARCHITECT ==================== -->
+    <section id="tab-mapper" class="tab-content hidden flex flex-col gap-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Worksheet input forms (Left) -->
+        <div class="lg:col-span-7 bg-stone-900 border border-stone-800 rounded-3xl p-6 shadow-xl flex flex-col gap-5">
+          <div class="font-sans">
+            <h3 class="text-xl font-black text-white">✍️ Frame Your Personal Architecture</h3>
+            <p class="text-xs text-stone-400 mt-1">
+              Identify the exact mechanical processes at play in your primary habit loop. Our integrated <strong>Linguistic Risk Analyzer</strong> will scan for striving language patterns.
+            </p>
+          </div>
+
+          <!-- Quick Templates loaders -->
+          <div>
+            <span class="text-[10px] font-mono text-stone-500 uppercase block mb-2">Auto-Load Case Study Templates</span>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="loadTemplate('peter')" class="px-3 py-1.5 rounded-md bg-stone-850 hover:bg-stone-800 text-xs border border-stone-850 text-stone-300 transition font-sans">
+                Simon Peter's Courtyard Loop
+              </button>
+              <button onclick="loadTemplate('solomon')" class="px-3 py-1.5 rounded-md bg-stone-850 hover:bg-stone-800 text-xs border border-stone-850 text-stone-300 transition font-sans">
+                Solomon's Ecclesiastes Consumption
+              </button>
+              <button onclick="loadTemplate('martha')" class="px-3 py-1.5 rounded-md bg-stone-850 hover:bg-stone-800 text-xs border border-stone-850 text-stone-300 transition font-sans">
+                Martha's Serving Performance
+              </button>
+            </div>
+          </div>
+
+          <!-- Input Fields -->
+          <div class="space-y-4 pt-2">
+            <!-- 1 -->
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="block text-xs font-bold text-stone-400 uppercase tracking-widest font-sans">1. Identify Your Broken Cistern (The Leaky Base)</label>
+                <span id="risk-warn-cistern" class="text-[9px] font-mono text-red-400 bg-red-500/10 px-2 py-0.5 rounded hidden">Linguistic Warning</span>
+              </div>
+              <input type="text" id="map-in-cistern" class="w-full bg-stone-950 border border-stone-800 focus:border-emerald-500 rounded-xl px-4 py-3 text-xs text-stone-200 focus:outline-none transition font-sans" placeholder="e.g., Placing my confidence in my flawless performance at work and keeping up perfect planner checklists" oninput="analyzeLinguisticFields('cistern')">
+              <p id="risk-desc-cistern" class="text-[10px] text-stone-500 mt-1 font-sans">What unstable asset holds up your basic sense of identity and safety?</p>
+            </div>
+
+            <!-- 2 -->
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="block text-xs font-bold text-stone-400 uppercase tracking-widest font-sans">2. Pinpoint Your Counterfeit Need (The Substitute)</label>
+                <span id="risk-warn-counterfeit" class="text-[9px] font-mono text-red-400 bg-red-500/10 px-2 py-0.5 rounded hidden">Linguistic Warning</span>
+              </div>
+              <input type="text" id="map-in-counterfeit" class="w-full bg-stone-950 border border-stone-800 focus:border-emerald-500 rounded-xl px-4 py-3 text-xs text-stone-200 focus:outline-none transition font-sans" placeholder="e.g., Believing I must immediately answer all communications to prove I am competent and valuable" oninput="analyzeLinguisticFields('counterfeit')">
+              <p id="risk-desc-counterfeit" class="text-[10px] text-stone-500 mt-1 font-sans">What minor metric has your mind chosen as a proxy goal?</p>
+            </div>
+
+            <!-- 3 -->
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="block text-xs font-bold text-stone-400 uppercase tracking-widest font-sans">3. Outline Your Triggered Habit Loop</label>
+                <span id="risk-warn-habit" class="text-[9px] font-mono text-red-400 bg-red-500/10 px-2 py-0.5 rounded hidden">Linguistic Warning</span>
+              </div>
+              <input type="text" id="map-in-habit" class="w-full bg-stone-950 border border-stone-800 focus:border-emerald-500 rounded-xl px-4 py-3 text-xs text-stone-200 focus:outline-none transition font-sans" placeholder="e.g., Cue: Afternoon anxiety ➔ Action: Scroll social media to seek approval ➔ Reward: Numb comfort" oninput="analyzeLinguisticFields('habit')">
+              <p id="risk-desc-habit" class="text-[10px] text-stone-500 mt-1 font-sans">Specify your Cue ➔ Action ➔ Comfort Sequence.</p>
+            </div>
+
+            <!-- 4 -->
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="block text-xs font-bold text-stone-400 uppercase tracking-widest font-sans">4. Name Your Internal Shame Accuser Voice</label>
+                <span id="risk-warn-shame" class="text-[9px] font-mono text-red-400 bg-red-500/10 px-2 py-0.5 rounded hidden">Linguistic Warning</span>
+              </div>
+              <input type="text" id="map-in-shame" class="w-full bg-stone-950 border border-stone-800 focus:border-emerald-500 rounded-xl px-4 py-3 text-xs text-stone-200 focus:outline-none transition font-sans" placeholder="e.g., 'You are fundamentally lazy, undisciplined, and failing everyone.'" oninput="analyzeLinguisticFields('shame')">
+              <p id="risk-desc-shame" class="text-[10px] text-stone-500 mt-1 font-sans">What does your self-talk label you when your willpower crashes?</p>
+            </div>
+
+            <!-- 5 -->
+            <div>
+              <div class="flex justify-between items-center mb-1">
+                <label class="block text-emerald-400 text-xs font-bold uppercase tracking-widest font-sans">5. Proclaim Your Grace Anchor (The Immutable Baseline)</label>
+                <span id="risk-warn-grace" class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded hidden">Grace Anchor Flag</span>
+              </div>
+              <input type="text" id="map-in-grace" class="w-full bg-emerald-950/20 border border-emerald-500/30 focus:border-emerald-500 rounded-xl px-4 py-3 text-xs text-emerald-200 focus:outline-none transition placeholder-emerald-900 font-sans" placeholder="e.g., 'I am unconditionally approved, secure, and loved. My limits are features, not character failures.'" oninput="analyzeLinguisticFields('grace')">
+              <p id="risk-desc-grace" class="text-[10px] text-stone-500 mt-1 font-sans">State your secure status completely decoupled from accomplishments.</p>
+            </div>
+          </div>
+
+          <!-- Control buttons -->
+          <div class="flex gap-2 pt-4 border-t border-stone-800">
+            <button onclick="compileBlueprint()" class="px-5 py-3 rounded-xl text-xs font-extrabold bg-emerald-500 hover:bg-emerald-400 text-black transition font-sans">
+              Compile My Blueprint 🚀
+            </button>
+            <button onclick="resetPersonalBuilder()" class="px-4 py-3 rounded-xl text-xs font-semibold bg-stone-850 text-stone-400 hover:text-white transition font-sans">
+              Clear Sheet
+            </button>
+          </div>
+        </div>
+
+        <!-- Compiled Visual Schema Blueprint preview cards (Right) -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+          <div class="bg-stone-900 border border-stone-800 rounded-3xl p-6 shadow-xl flex-grow flex flex-col justify-between" id="blueprint-area">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-stone-800 mb-4">
+                <div class="font-sans">
+                  <h4 class="text-sm font-bold text-stone-300 uppercase tracking-widest font-mono">Blueprint Output Coordinates</h4>
+                  <p class="text-[10px] text-stone-500">Your custom de-escalation parameters</p>
+                </div>
+                <button onclick="copyMyBlueprint()" class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20 hover:bg-emerald-500/20 transition font-sans">
+                  Copy Text
+                </button>
+              </div>
+
+              <!-- Flow card containers -->
+              <div class="space-y-3">
+                <div class="p-3 bg-stone-950 rounded-xl border border-blue-500/20 flex gap-3">
+                  <span class="text-xl">🪣</span>
+                  <div class="font-sans">
+                    <span class="text-[9px] font-mono text-blue-400 uppercase tracking-wider block">01. Core Cistern Void</span>
+                    <p id="bp-cistern" class="text-xs text-stone-300 mt-0.5 font-medium">Define your core leak or load a Biblical template...</p>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-stone-950 rounded-xl border border-amber-500/20 flex gap-3">
+                  <span class="text-xl">🎭</span>
+                  <div class="font-sans">
+                    <span class="text-[9px] font-mono text-amber-400 uppercase tracking-wider block">02. Counterfeit Need Focus</span>
+                    <p id="bp-counterfeit" class="text-xs text-stone-300 mt-0.5 font-medium">Define your proxy metric...</p>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-stone-950 rounded-xl border border-red-500/20 flex gap-3">
+                  <span class="text-xl">🔄</span>
+                  <div class="font-sans">
+                    <span class="text-[9px] font-mono text-red-400 uppercase tracking-wider block">03. Triggered Habit Loop</span>
+                    <p id="bp-habit" class="text-xs text-stone-300 mt-0.5 font-medium">Define your loop sequence...</p>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-stone-950 rounded-xl border border-fuchsia-500/20 flex gap-3">
+                  <span class="text-xl">💥</span>
+                  <div class="font-sans">
+                    <span class="text-[9px] font-mono text-fuchsia-400 uppercase tracking-wider block">04. Internal Shame Accuser</span>
+                    <p id="bp-shame" class="text-xs text-fuchsia-300 italic mt-0.5 font-medium font-sans">Define your self-judgment voice...</p>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-stone-950 rounded-xl border border-emerald-500/20 flex gap-3">
+                  <span class="text-xl">🛡️</span>
+                  <div class="font-sans">
+                    <span class="text-[9px] font-mono text-emerald-400 uppercase tracking-wider block">05. Resting Grace Anchor</span>
+                    <p id="bp-grace" class="text-xs text-emerald-300 mt-0.5 font-bold">Define your truth source...</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-[10px] text-stone-500 text-center mt-6 pt-3 border-t border-stone-800">
+              "We step out of the striving loop not by completing more law, but by accepting our standing."
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- 🛟 Footer -->
+  <footer class="border-t border-stone-800 bg-stone-950/40 py-6 text-center text-xs text-stone-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
+      <p>© 2026 The Loop Breaker. Solutions for spiritual & behavioral leaks.</p>
+      <div class="flex gap-4 font-sans">
+        <a href="#" class="hover:text-stone-300">Theology Archives</a>
+        <span>•</span>
+        <a href="#" class="hover:text-stone-300">Physics of the Soul</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast system notification banner -->
+  <div id="toast-banner" class="fixed bottom-6 right-6 bg-emerald-950 border border-emerald-500 text-emerald-100 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition duration-300 z-50">
+    <span class="text-xl">✔️</span>
+    <span id="toast-msg" class="text-xs font-bold font-sans">Action executed successfully.</span>
+  </div>
+
+  <!-- JavaScript Logics -->
+  <script>
+    // ================= TAB MANAGEMENT =================
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.className = "tab-btn px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg text-stone-400 hover:text-white hover:bg-stone-800/50 transition duration-200";
+      });
+      document.getElementById(`btn-${tabId}`).className = "tab-btn px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-stone-800 text-white border border-stone-700 transition duration-200";
+      
+      if(tabId === 'simulator') {
+        setTimeout(resizeCanvas, 50);
+      }
+    }
+
+    // ================= CASE STUDIES FILTERING =================
+    function filterCases(category) {
+      // Style buttons
+      document.querySelectorAll('.case-filter-btn').forEach(btn => {
+        btn.className = "case-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg text-stone-400 hover:text-white hover:bg-stone-850 transition";
+      });
+      document.getElementById(`filter-${category}`).className = "case-filter-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-stone-850 text-white border border-stone-700 transition";
+
+      // Toggle visibility
+      document.querySelectorAll('.case-card').forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // ================= QUIZ LOGIC =================
+    function calculateQuizScore() {
+      const checkboxes = document.querySelectorAll('.quiz-check');
+      let score = 0;
+      checkboxes.forEach(cb => {
+        if(cb.checked) score += 20;
+      });
+
+      document.getElementById('quiz-selected-count').innerText = `${score/20} of 5 checked`;
+      const scoreNum = document.getElementById('quiz-score-num');
+      scoreNum.innerText = `${score}%`;
+
+      const verdict = document.getElementById('quiz-verdict');
+      const explanation = document.getElementById('quiz-explanation');
+
+      if (score === 0) {
+        scoreNum.className = "text-6xl font-black text-stone-600 mt-2";
+        verdict.innerText = "Innocent Utility";
+        verdict.className = "text-xs font-bold uppercase tracking-wider text-stone-500 mt-3";
+        explanation.innerText = "A basic utility tool with no predatory behavioral traps. Completely harmless to human identity.";
+      } else if (score <= 40) {
+        scoreNum.className = "text-6xl font-black text-blue-500 mt-2";
+        verdict.innerText = "Low Stress Utility";
+        verdict.className = "text-xs font-bold uppercase tracking-wider text-blue-400 mt-3";
+        explanation.innerText = "Contains basic metrics markers. Functional, but could trigger performance strivings if baseline stress is elevated.";
+      } else if (score <= 60) {
+        scoreNum.className = "text-6xl font-black text-amber-500 mt-2";
+        verdict.innerText = "Willpower Taxing Engine";
+        verdict.className = "text-xs font-bold uppercase tracking-wider text-amber-400 mt-3";
+        explanation.innerText = "This app begins manipulating your behavioral systems. The constant threat of streak reset forces willpower spending to bypass routine fatigue.";
+      } else if (score <= 80) {
+        scoreNum.className = "text-6xl font-black text-red-500 mt-2 animate-pulse";
+        verdict.innerText = "High-Threat Worth Contingency";
+        verdict.className = "text-xs font-bold uppercase tracking-wider text-red-400 mt-3";
+        explanation.innerText = "Warning. The app uses streak maintenance and public competitive leaderboards to make your core worth contingent on performance metrics.";
+      } else {
+        scoreNum.className = "text-6xl font-black text-fuchsia-500 mt-2 animate-pulse";
+        verdict.innerText = "PREDATORY STRIVING CORE";
+        verdict.className = "text-xs font-bold uppercase tracking-wider text-fuchsia-400 mt-3";
+        explanation.innerText = "Extreme risk. Every behavioral design pattern is calibrated to create a digital broken cistern. Failing to hit metrics launches a self-accusation cycle.";
+      }
+    }
+
+    // ================= SANDBOX SIMULATOR PHYSICS =================
+    let simInterval = null;
+    let W = 100; // Willpower
+    let S = 10;  // Stress
+    let SH = 0;  // Shame
+    let activeParadigm = 'works';
+    let isRunning = false;
+
+    // Default variable configurations
+    let k_leak = 0.8;
+    let F_shame = 1.5;
+    let g_grace = 1.5;
+
+    // Canvas settings
+    const canvas = document.getElementById('decayChart');
+    const ctx = canvas.getContext('2d');
+    let dataPoints = [];
+    let maxDataPoints = 40;
+
+    // Sync HTML Sliders to JS Variables
+    function updateSlidersFromUI() {
+      k_leak = parseFloat(document.getElementById('param-leak').value);
+      F_shame = parseFloat(document.getElementById('param-shame').value);
+      g_grace = parseFloat(document.getElementById('param-grace').value);
+
+      document.getElementById('label-leak').innerText = k_leak.toFixed(1);
+      document.getElementById('label-shame').innerText = F_shame.toFixed(1);
+      document.getElementById('label-grace').innerText = g_grace.toFixed(1);
+
+      // Dynamically adjust CSS drip animation speed based on k_leak
+      const waterDrip = document.getElementById('water-droplet');
+      if (waterDrip) {
+        // Higher leak rate means faster drip animation loop
+        const duration = Math.max(0.3, 1.8 - (k_leak * 0.7)); 
+        waterDrip.style.animationDuration = `${duration}s`;
+      }
+
+      logToTerminal(`🔧 System variables tuned: k=${k_leak}, Fs=${F_shame}, g=${g_grace}`, "text-stone-500");
+    }
+
+    function resizeCanvas() {
+      if (!canvas) return;
+      const rect = canvas.parentNode.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      drawChart();
+    }
+    window.addEventListener('resize', resizeCanvas);
+    setTimeout(resizeCanvas, 50);
+
+    function logToTerminal(msg, colorClass = "text-stone-400") {
+      const logs = document.getElementById('sim-logs');
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const line = document.createElement('div');
+      line.className = `text-[11px] font-mono ${colorClass}`;
+      line.innerHTML = `<span class="text-stone-600">[${timeStr}]</span> ${msg}`;
+      logs.appendChild(line);
+      logs.scrollTop = logs.scrollHeight;
+    }
+
+    function setParadigm(par) {
+      activeParadigm = par;
+      const worksBtn = document.getElementById('par-btn-works');
+      const graceBtn = document.getElementById('par-btn-grace');
+      const desc = document.getElementById('paradigm-description');
+      const statusText = document.getElementById('active-status-text');
+      
+      const waterFill = document.getElementById('cistern-water-fill');
+      const waterDrip = document.getElementById('water-droplet');
+      const cisternLabel = document.getElementById('cistern-label');
+
+      if (par === 'works') {
+        worksBtn.className = "p-3 rounded-lg border border-amber-500/50 bg-amber-500/10 text-amber-400 font-bold text-xs transition flex flex-col items-center gap-1 font-sans";
+        graceBtn.className = "p-3 rounded-lg border border-stone-800 bg-stone-900 text-stone-500 font-semibold text-xs transition flex flex-col items-center gap-1 font-sans";
+        desc.innerHTML = `<strong>Works Mode:</strong> Your worth is volatile and leaky. You must run behaviors to validate yourself. This causes an automatic tax on daily willpower.`;
+        statusText.innerText = "STRESS DETECTED (WORKS)";
+        statusText.className = "text-amber-400 font-bold";
+        
+        // Update SVG cistern assets to show leaky state
+        if (waterFill) waterFill.setAttribute('fill', '#f43f5e'); // Red representation
+        if (waterDrip) waterDrip.style.display = "block";
+        if (cisternLabel) {
+          cisternLabel.innerText = "LEAKY";
+          cisternLabel.className = "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10px] font-mono text-red-400 font-bold";
+        }
+
+        logToTerminal("⚠️ System loaded in WORKS mode. Baseline leak active.", "text-amber-400");
+      } else {
+        graceBtn.className = "p-3 rounded-lg border border-emerald-500/50 bg-emerald-500/10 text-emerald-400 font-bold text-xs transition flex flex-col items-center gap-1 font-sans";
+        worksBtn.className = "p-3 rounded-lg border border-stone-800 bg-stone-900 text-stone-500 font-semibold text-xs transition flex flex-col items-center gap-1 font-sans";
+        desc.innerHTML = `<strong>Grace Mode:</strong> Your identity is a secure gift. There is zero leakage from your cistern. Willpower is treated as an optional playing resource and naturally recovers.`;
+        statusText.innerText = "ANCHORED (GRACE)";
+        statusText.className = "text-emerald-400 font-bold";
+        
+        // Update SVG cistern assets to show sealed state
+        if (waterFill) waterFill.setAttribute('fill', '#10b981'); // Emerald representation
+        if (waterDrip) waterDrip.style.display = "none"; // Stop drip visual
+        if (cisternLabel) {
+          cisternLabel.innerText = "SEALED";
+          cisternLabel.className = "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10px] font-mono text-emerald-400 font-bold";
+        }
+
+        logToTerminal("🛡️ System loaded in GRACE mode. Worth sealed & protected.", "text-emerald-400");
+      }
+      updateSimUI();
+    }
+
+    function startSimulation() {
+      if (isRunning) return;
+      isRunning = true;
+      document.getElementById('btn-start').disabled = true;
+      document.getElementById('btn-pause').disabled = false;
+
+      logToTerminal("🚀 Daily simulation cycle running.", "text-stone-100 font-bold");
+
+      simInterval = setInterval(() => {
+        if (activeParadigm === 'works') {
+          // Works mathematics: depletion curves
+          let depletionFactor = 0.4 + (S * 0.04 * k_leak);
+          W = Math.max(0, W - depletionFactor);
+          
+          // Stress naturally drifts upward under a leaky foundation
+          S = Math.min(100, S + 0.3 * k_leak);
+
+          // If willpower breaches critical threshold
+          if (W < 30) {
+            SH = Math.min(100, SH + 1.0 * F_shame);
+            S = Math.min(100, S + 0.8 * F_shame); // Shame directly feeds anxiety
+            if (Math.random() < 0.15) {
+              logToTerminal("💥 Willpower failure! Shame engine generating high-stress feedback loops.", "text-fuchsia-400 font-semibold");
+            }
+          }
+        } else {
+          // Grace mathematics: recovery curves
+          W = Math.min(100, W + 1.2 * g_grace);
+          S = Math.max(0, S - 1.4 * g_grace);
+          SH = Math.max(0, SH - 2.0 * g_grace);
+        }
+
+        // Store curves logs
+        dataPoints.push({ w: W, s: S, sh: SH });
+        if (dataPoints.length > maxDataPoints) {
+          dataPoints.shift();
+        }
+
+        drawChart();
+        updateSimUI();
+      }, 500);
+    }
+
+    function pauseSimulation() {
+      if (!isRunning) return;
+      isRunning = false;
+      clearInterval(simInterval);
+      document.getElementById('btn-start').disabled = false;
+      document.getElementById('btn-pause').disabled = true;
+      logToTerminal("⏸️ Simulation paused.", "text-stone-500");
+    }
+
+    function resetSimulation() {
+      pauseSimulation();
+      W = 100;
+      S = 10;
+      SH = 0;
+      dataPoints = [];
+      setParadigm('works');
+      document.getElementById('sim-logs').innerHTML = `<div class="text-stone-600 italic">[09:00 AM] System resting. Set paradigm and run.</div>`;
+      updateSimUI();
+      drawChart();
+    }
+
+    function injectEvent(eventType) {
+      if (!isRunning) {
+        logToTerminal("⚠️ Start simulation engine before injecting day events.", "text-rose-400");
+        return;
+      }
+
+      if (eventType === 'notification') {
+        if (activeParadigm === 'works') {
+          S = Math.min(100, S + 15);
+          W = Math.max(0, W - 10);
+          logToTerminal("💬 Late Slack Notification! Stress spike. (+15 Stress, -10 Willpower)", "text-red-400");
+        } else {
+          S = Math.min(100, S + 3);
+          logToTerminal("🛡️ Dismissed late work notification with zero threat to status. (+3 minor Stress handled under Grace)", "text-emerald-400");
+        }
+      } else if (eventType === 'missed') {
+        if (activeParadigm === 'works') {
+          SH = Math.min(100, SH + 20);
+          S = Math.min(100, S + 15);
+          W = Math.max(0, W - 15);
+          logToTerminal("🏃‍♂️ Watch Ring Missed! Self-accusation sequence initialized. (+20 Shame, +15 Stress, -15 Willpower)", "text-fuchsia-400");
+        } else {
+          logToTerminal("🛡️ Performance target missed, but secure standing shields your worth. No shame penalty.", "text-emerald-400");
+        }
+      } else if (eventType === 'comparison') {
+        if (activeParadigm === 'works') {
+          S = Math.min(100, S + 10);
+          SH = Math.min(100, SH + 10);
+          logToTerminal("🔍 Browsed peer achievements on LinkedIn. Anxiety triggered. (+10 Stress, +10 Shame)", "text-amber-400");
+        } else {
+          logToTerminal("🛡️ Scrolling social feeds. Happy for colleagues without feeling deficit. (No structural impact)", "text-emerald-400");
+        }
+      } else if (eventType === 'reassurance') {
+        S = Math.max(0, S - 25);
+        SH = Math.max(0, SH - 20);
+        W = Math.min(100, W + 15);
+        logToTerminal("🛡️ Deep grounding in secure adoption accomplished. System cooled. (-25 Stress, -20 Shame, +15 Willpower)", "text-emerald-400 font-bold");
+      }
+      
+      updateSimUI();
+    }
+
+    function updateSimUI() {
+      document.getElementById('sim-willpower-val').innerText = Math.round(W);
+      document.getElementById('sim-stress-val').innerText = Math.round(S);
+      document.getElementById('sim-shame-val').innerText = Math.round(SH);
+
+      document.getElementById('sim-willpower-bar').style.width = `${W}%`;
+      document.getElementById('sim-stress-bar').style.width = `${S}%`;
+      document.getElementById('sim-shame-bar').style.width = `${SH}%`;
+
+      const wBar = document.getElementById('sim-willpower-bar');
+      const wVal = document.getElementById('sim-willpower-val');
+      if (W < 30) {
+        wBar.className = "bg-red-500 h-full transition-all duration-300";
+        wVal.className = "text-3xl font-black text-red-500 animate-pulse";
+      } else if (W < 60) {
+        wBar.className = "bg-amber-500 h-full transition-all duration-300";
+        wVal.className = "text-3xl font-black text-amber-500";
+      } else {
+        wBar.className = "bg-emerald-500 h-full transition-all duration-300";
+        if (activeParadigm === 'grace') {
+          wVal.className = "text-3xl font-black text-emerald-500";
+        } else {
+          wVal.className = "text-3xl font-black text-amber-500";
+        }
+      }
+    }
+
+    function drawChart() {
+      if (!canvas) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (dataPoints.length === 0) return;
+
+      const spacing = canvas.width / (maxDataPoints - 1);
+      const heightScale = canvas.height / 100;
+
+      // Reference lines
+      ctx.strokeStyle = '#292524';
+      ctx.lineWidth = 1;
+      for (let i = 25; i <= 75; i += 25) {
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height - (i * heightScale));
+        ctx.lineTo(canvas.width, canvas.height - (i * heightScale));
+        ctx.stroke();
+      }
+
+      // Plot Willpower Line Curve
+      ctx.beginPath();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = activeParadigm === 'works' ? '#f59e0b' : '#10b981';
+      dataPoints.forEach((pt, idx) => {
+        const x = idx * spacing;
+        const y = canvas.height - (pt.w * heightScale);
+        if (idx === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+
+      // Plot Stress Line Curve
+      ctx.beginPath();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#ef4444';
+      ctx.setLineDash([4, 4]);
+      dataPoints.forEach((pt, idx) => {
+        const x = idx * spacing;
+        const y = canvas.height - (pt.s * heightScale);
+        if (idx === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      ctx.setLineDash([]); // Reset dash
+
+      // Plot Shame Line Curve
+      ctx.beginPath();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#d946ef';
+      dataPoints.forEach((pt, idx) => {
+        const x = idx * spacing;
+        const y = canvas.height - (pt.sh * heightScale);
+        if (idx === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    }
+
+
+    // ================= PERSONAL ARCHITECT ENGINE =================
+    const templates = {
+      peter: {
+        cistern: "Placing my fundamental security in my heroic personal devotion to Christ and never letting myself be seen as wavering.",
+        counterfeit: "Believing I must white-knuckle my physical bravery in the presence of strangers to preserve my heroic reputation.",
+        habit: "Cue: Underlying terror of being arrested or exposed ➔ Action: Instantly deny Christ and swear oaths ➔ Reward: Relief of avoiding physical threat.",
+        shame: "'You let the Savior down. You are a coward, a traitor, and completely beyond hope.'",
+        grace: "My standing is secure and loved. I don't need a clean court record to be validated. Simon Peter's identity is finalized by the King."
+      },
+      solomon: {
+        cistern: "Seeking cosmic worth, defense against mortality, and lasting peace through massive construction projects, gardens, and pleasure assets.",
+        counterfeit: "Believing I must accumulate more material things, building programs, and gold indexes to patch existential void.",
+        habit: "Cue: Existential boredom and emptiness ➔ Action: Embark on building a massive new project and hire servants ➔ Reward: Temporary control-high.",
+        shame: "'Behold, all was vanity and a striving after wind. I am still empty.'",
+        grace: "Satisfaction is a gift from God. My status is not a metric total of palaces. I am free to sit in peace."
+      },
+      martha: {
+        cistern: "Seeking safe approval and personal validation by offering flawless domestic performance to Jesus.",
+        counterfeit: "Believing I must manage all elements of hospitality to prove I am competent and indispensable.",
+        habit: "Cue: Relational obscurity or feeling ignored ➔ Action: Snapping at family members and taking on more chores ➔ Reward: Tension discharge.",
+        shame: "'You are stressed and troubled about too many things. You have failed to sit at His feet.'",
+        grace: "One thing is necessary. My value is unconditional; my limits are loved features. I am safe to sit and receive."
+      }
+    };
+
+    function loadTemplate(key) {
+      const data = templates[key];
+      document.getElementById('map-in-cistern').value = data.cistern;
+      document.getElementById('map-in-counterfeit').value = data.counterfeit;
+      document.getElementById('map-in-habit').value = data.habit;
+      document.getElementById('map-in-shame').value = data.shame;
+      document.getElementById('map-in-grace').value = data.grace;
+      
+      // Reset risk checks on load
+      analyzeLinguisticFields('cistern');
+      analyzeLinguisticFields('counterfeit');
+      analyzeLinguisticFields('habit');
+      analyzeLinguisticFields('shame');
+      analyzeLinguisticFields('grace');
+
+      compileBlueprint();
+      showToast("Template successfully loaded!", "text-emerald-100", "bg-emerald-950", "border-emerald-500");
+    }
+
+    const riskWords = ["must", "always", "never", "fail", "lazy", "perfect", "worthless", "need to", "try harder", "discipline"];
+    
+    function analyzeLinguisticFields(fieldId) {
+      const val = document.getElementById(`map-in-${fieldId}`).value.toLowerCase();
+      const warningSpan = document.getElementById(`risk-warn-${fieldId}`);
+      const descText = document.getElementById(`risk-desc-${fieldId}`);
+
+      let foundRisks = [];
+      riskWords.forEach(word => {
+        if(val.includes(word)) foundRisks.push(`"${word}"`);
+      });
+
+      if (foundRisks.length > 0) {
+        warningSpan.classList.remove('hidden');
+        if (fieldId === 'grace') {
+          warningSpan.innerText = "Striving detected in Grace Anchor";
+          warningSpan.className = "text-[9px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded";
+          descText.innerHTML = `<span class="text-amber-400 font-bold">Risk:</span> Your grace statement sounds like a self-improvement rule. Base your worth on received standing, not self-rules.`;
+        } else {
+          warningSpan.innerText = `Striving Language: ${foundRisks.join(', ')}`;
+          warningSpan.className = "text-[9px] font-mono text-red-400 bg-red-500/10 px-2 py-0.5 rounded";
+          descText.innerHTML = `<span class="text-red-400 font-bold">Alert:</span> Striving words detected. This language feeds the works framework.`;
+        }
+      } else {
+        warningSpan.classList.add('hidden');
+        if (fieldId === 'cistern') descText.innerText = "What unstable asset holds up your basic sense of identity and safety?";
+        if (fieldId === 'counterfeit') descText.innerText = "What minor metric has your mind chosen as a proxy goal?";
+        if (fieldId === 'habit') descText.innerText = "Specify your Cue ➔ Action ➔ Comfort Sequence.";
+        if (fieldId === 'shame') descText.innerText = "What does your self-talk label you when your willpower crashes?";
+        if (fieldId === 'grace') descText.innerText = "State your secure status completely decoupled from accomplishments.";
+      }
+    }
+
+    function compileBlueprint() {
+      const cis = document.getElementById('map-in-cistern').value.trim() || "Define your core leak or load a Biblical template...";
+      const cnt = document.getElementById('map-in-counterfeit').value.trim() || "Define your proxy metric...";
+      const hab = document.getElementById('map-in-habit').value.trim() || "Define your loop sequence...";
+      const shm = document.getElementById('map-in-shame').value.trim() || "Define your self-judgment voice...";
+      const grc = document.getElementById('map-in-grace').value.trim() || "Define your truth source...";
+
+      document.getElementById('bp-cistern').innerText = cis;
+      document.getElementById('bp-counterfeit').innerText = cnt;
+      document.getElementById('bp-habit').innerText = hab;
+      document.getElementById('bp-shame').innerText = shm;
+      document.getElementById('bp-grace').innerText = grc;
+    }
+
+    function resetPersonalBuilder() {
+      document.getElementById('map-in-cistern').value = "";
+      document.getElementById('map-in-counterfeit').value = "";
+      document.getElementById('map-in-habit').value = "";
+      document.getElementById('map-in-shame').value = "";
+      document.getElementById('map-in-grace').value = "";
+
+      document.getElementById('bp-cistern').innerText = "Define your core leak or load a Biblical template...";
+      document.getElementById('bp-counterfeit').innerText = "Define your proxy metric...";
+      document.getElementById('bp-habit').innerText = "Define your loop sequence...";
+      document.getElementById('bp-shame').innerText = "Define your self-judgment voice...";
+      document.getElementById('bp-grace').innerText = "Define your truth source...";
+
+      document.querySelectorAll('[id^="risk-warn-"]').forEach(span => span.classList.add('hidden'));
+    }
+
+    function showToast(msg, txtClass, bgClass, borderClass) {
+      const toast = document.getElementById('toast-banner');
+      const text = document.getElementById('toast-msg');
+
+      toast.className = `fixed bottom-6 right-6 ${bgClass} ${borderClass} ${txtClass} border px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform transition duration-300 z-50 translate-y-0 opacity-100`;
+      text.innerText = msg;
+
+      setTimeout(() => {
+        toast.className = "fixed bottom-6 right-6 bg-emerald-950 border border-emerald-500 text-emerald-100 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition duration-300 z-50";
+      }, 3000);
+    }
+
+    function copyMyBlueprint() {
+      const c = document.getElementById('bp-cistern').innerText;
+      const cn = document.getElementById('bp-counterfeit').innerText;
+      const h = document.getElementById('bp-habit').innerText;
+      const s = document.getElementById('bp-shame').innerText;
+      const g = document.getElementById('bp-grace').innerText;
+
+      const txt = `📋 MY DE-ESCALATION COORDINATES\n\n` +
+                  `1. BROKEN CISTERN:\n   ${c}\n\n` +
+                  `2. COUNTERFEIT NEED:\n   ${cn}\n\n` +
+                  `3. TRIGGERED HABIT:\n   ${h}\n\n` +
+                  `4. SHAME SPIRAL VOICE:\n   ${s}\n\n` +
+                  `5. IMMUTABLE GRACE ANCHOR:\n   ${g}\n\n` +
+                  `Constructed with The Loop Breaker.`;
+
+      const el = document.createElement('textarea');
+      el.value = txt;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+
+      showToast("Copied coordinates to clipboard!", "text-emerald-100", "bg-emerald-950", "border-emerald-500");
+    }
+
+    window.onload = function() {
+      resizeCanvas();
+      setParadigm('works');
+    }
+  </script>
+</body>
+</html>
