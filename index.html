@@ -276,41 +276,118 @@
     </div>
     <div class="vessel-stage">
       <svg class="vessel" viewBox="0 0 360 250" role="img" aria-label="A cracked, leaking cistern beside an overflowing fountain">
-        <!-- CISTERN -->
-        <path d="M48 70 L70 196 Q72 208 86 208 L120 208 Q134 208 136 196 L158 70 Z" fill="none" stroke="#9a7fa6" stroke-width="2"/>
-        <line x1="48" y1="70" x2="158" y2="70" stroke="#9a7fa6" stroke-width="2"/>
-        <path d="M58 150 L148 150 L141 192 Q140 200 130 200 L76 200 Q66 200 65 192 Z" fill="#3a2f44"/>
-        <path d="M104 138 L96 168 L108 182 L100 206" fill="none" stroke="#0b1618" stroke-width="3"/>
-        <circle cx="97" cy="200" r="3" fill="#9a7fa6">
-          <animate attributeName="cy" values="200;224" dur="2.8s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;.95;.9;0" keyTimes="0;.12;.7;1" dur="2.8s" repeatCount="indefinite"/>
+        <defs>
+          <!-- Glowing effects -->
+          <filter id="glow-shame" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-living" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          
+          <!-- Color Gradients -->
+          <linearGradient id="grad-shame" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#b59fc2" />
+            <stop offset="100%" stop-color="#5b4a64" />
+          </linearGradient>
+          <linearGradient id="grad-shame-liquid" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#9a7fa6" stop-opacity="0.4" />
+            <stop offset="100%" stop-color="#403048" stop-opacity="0.8" />
+          </linearGradient>
+          <linearGradient id="grad-living" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#52d8c5" />
+            <stop offset="100%" stop-color="#1c5750" />
+          </linearGradient>
+          <linearGradient id="grad-living-liquid" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#52d8c5" stop-opacity="0.5" />
+            <stop offset="100%" stop-color="#0b2321" stop-opacity="0.9" />
+          </linearGradient>
+        </defs>
+
+        <!-- ==================== BROKEN CISTERN ==================== -->
+        <!-- Glass Rim -->
+        <ellipse cx="100" cy="60" rx="50" ry="8" fill="none" stroke="url(#grad-shame)" stroke-width="1.5" opacity="0.6" />
+        
+        <!-- Liquid inside -->
+        <path d="M 62 135 Q 100 142 138 135 L 128 186 Q 126 196 114 196 L 86 196 Q 74 196 72 186 Z" fill="url(#grad-shame-liquid)" />
+        <path d="M 62 135 Q 100 142 138 135" fill="none" stroke="#b59fc2" stroke-width="1.5" opacity="0.7" />
+
+        <!-- Glass Outline -->
+        <path d="M 50 60 L 72 186 Q 74 196 86 196 L 114 196 Q 126 196 128 186 L 150 60" fill="none" stroke="url(#grad-shame)" stroke-width="2.2" stroke-linecap="round" />
+
+        <!-- Glowing Crack -->
+        <path d="M 100 115 L 94 135 L 106 155 L 98 196" fill="none" stroke="#ecd9f5" stroke-width="2.5" stroke-linejoin="round" filter="url(#glow-shame)" />
+
+        <!-- Leaking Water Drops -->
+        <circle cx="98" cy="196" r="3.2" fill="#b59fc2" filter="url(#glow-shame)">
+          <animate attributeName="cy" values="196;230" dur="2.4s" repeatCount="indefinite" />
+          <animate attributeName="r" values="3.2;1.5" dur="2.4s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0;0.9;0.7;0" keyTimes="0;0.1;0.8;1" dur="2.4s" repeatCount="indefinite" />
         </circle>
-        <circle cx="103" cy="200" r="2.4" fill="#9a7fa6">
-          <animate attributeName="cy" values="200;224" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;.95;.9;0" keyTimes="0;.12;.7;1" dur="2.8s" begin="1.4s" repeatCount="indefinite"/>
+        <circle cx="98" cy="196" r="2.8" fill="#b59fc2" filter="url(#glow-shame)">
+          <animate attributeName="cy" values="196;230" dur="2.4s" begin="1.2s" repeatCount="indefinite" />
+          <animate attributeName="r" values="2.8;1.2" dur="2.4s" begin="1.2s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0;0.9;0.7;0" keyTimes="0;0.1;0.8;1" dur="2.4s" begin="1.2s" repeatCount="indefinite" />
         </circle>
-        <text x="103" y="232" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10.5" fill="#9a7fa6">you dug it · it leaks</text>
-        <!-- FOUNTAIN -->
-        <g transform="translate(202,0)">
-          <ellipse cx="62" cy="150" rx="16" ry="5" fill="none" stroke="#52d8c5" stroke-width="1.4">
-            <animate attributeName="rx" values="14;48" dur="3.6s" repeatCount="indefinite"/>
-            <animate attributeName="ry" values="4;13" dur="3.6s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values=".7;0" dur="3.6s" repeatCount="indefinite"/>
+
+        <!-- Label -->
+        <text x="100" y="228" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-dim)" letter-spacing="0.04em">you dug it · it leaks</text>
+
+
+        <!-- ==================== FOUNTAIN OF LIVING WATER ==================== -->
+        <g>
+          <!-- Water Surface Ellipse -->
+          <ellipse cx="260" cy="140" rx="40" ry="6" fill="url(#grad-living-liquid)" stroke="url(#grad-living)" stroke-width="1.5" />
+          
+          <!-- Outer Bowl Outline -->
+          <path d="M 220 140 Q 220 190 260 196 Q 300 190 300 140" fill="none" stroke="url(#grad-living)" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M 220 140 Q 220 190 260 196 Q 300 190 300 140 Z" fill="rgba(82, 216, 197, 0.05)" />
+
+          <!-- Overflow Ripples -->
+          <ellipse cx="260" cy="140" rx="40" ry="6" fill="none" stroke="#52d8c5" stroke-width="1.2" opacity="0.8">
+            <animate attributeName="rx" values="40;54" dur="2.5s" repeatCount="indefinite" />
+            <animate attributeName="ry" values="6;10" dur="2.5s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8;0" dur="2.5s" repeatCount="indefinite" />
           </ellipse>
-          <path d="M26 150 Q26 202 62 210 Q98 202 98 150 Z" fill="#0e2a28"/>
-          <path d="M26 150 Q62 136 98 150" fill="none" stroke="#52d8c5" stroke-width="2.2"/>
-          <path d="M62 150 C57 114 67 114 62 84 C57 56 67 56 62 34" fill="none" stroke="#52d8c5" stroke-width="3" stroke-linecap="round"/>
-          <path d="M62 84 q-19 22 -25 58" fill="none" stroke="#52d8c5" stroke-width="1.6" opacity="0.55"/>
-          <path d="M62 84 q19 22 25 58" fill="none" stroke="#52d8c5" stroke-width="1.6" opacity="0.55"/>
-          <circle cx="30" cy="152" r="2.4" fill="#52d8c5">
-            <animate attributeName="cy" values="152;180" dur="3s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0;.9;0" keyTimes="0;.2;1" dur="3s" repeatCount="indefinite"/>
+          <ellipse cx="260" cy="140" rx="40" ry="6" fill="none" stroke="#52d8c5" stroke-width="1" opacity="0.8">
+            <animate attributeName="rx" values="40;54" dur="2.5s" begin="1.25s" repeatCount="indefinite" />
+            <animate attributeName="ry" values="6;10" dur="2.5s" begin="1.25s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.8;0" dur="2.5s" begin="1.25s" repeatCount="indefinite" />
+          </ellipse>
+
+          <!-- Central Rising Plume (Glow & Main Stream) -->
+          <path d="M 260 140 C 256 110 264 90 260 55" fill="none" stroke="#d5fcf7" stroke-width="3" stroke-linecap="round" filter="url(#glow-living)" stroke-dasharray="15 15">
+            <animate attributeName="stroke-dashoffset" values="30;0" dur="0.8s" repeatCount="indefinite" />
+          </path>
+
+          <!-- Overflowing Arches -->
+          <path d="M 260 55 Q 228 60 222 140" fill="none" stroke="url(#grad-living)" stroke-width="2" stroke-linecap="round" stroke-dasharray="10 10">
+            <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+          </path>
+          <path d="M 260 55 Q 292 60 298 140" fill="none" stroke="url(#grad-living)" stroke-width="2" stroke-linecap="round" stroke-dasharray="10 10">
+            <animate attributeName="stroke-dashoffset" values="20;0" dur="1.2s" repeatCount="indefinite" />
+          </path>
+
+          <!-- Overflowing Side Drops -->
+          <circle cx="221" cy="140" r="2.2" fill="#52d8c5" filter="url(#glow-living)">
+            <animate attributeName="cy" values="140;185" dur="2s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0;0.9;0" keyTimes="0;0.15;1" dur="2s" repeatCount="indefinite" />
           </circle>
-          <circle cx="94" cy="152" r="2.4" fill="#52d8c5">
-            <animate attributeName="cy" values="152;180" dur="3s" begin="1.5s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0;.9;0" keyTimes="0;.2;1" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+          <circle cx="299" cy="140" r="2.2" fill="#52d8c5" filter="url(#glow-living)">
+            <animate attributeName="cy" values="140;185" dur="2s" begin="1s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0;0.9;0" keyTimes="0;0.15;1" dur="2s" begin="1s" repeatCount="indefinite" />
           </circle>
-          <text x="62" y="232" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10.5" fill="#52d8c5">you receive it · it overflows</text>
+
+          <!-- Label -->
+          <text x="260" y="228" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--living)" letter-spacing="0.04em">you receive it · it overflows</text>
         </g>
       </svg>
     </div>
