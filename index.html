@@ -80,6 +80,8 @@
 
   /* TILES + PANEL */
   .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  #flaw-tiles{grid-template-columns:repeat(3,1fr)}
+  #axis-tiles{grid-template-columns:repeat(5,1fr)}
   .tile{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px 14px;
     cursor:pointer;text-align:left;color:var(--ink);font-family:inherit;font-size:14.5px;
     transition:.18s;display:flex;flex-direction:column;gap:9px}
@@ -99,11 +101,24 @@
   .cell .k{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.13em;
     text-transform:uppercase;margin-bottom:6px;color:var(--ink-faint)}
   .cell .v{font-size:15.5px;color:var(--ink);line-height:1.5}
-  .cell.need .k,.cell.need .v{color:var(--living)}
+  .cell.need .k{color:var(--living)}
   .cell.loop .k,.cell.trap .k{color:var(--shame)}
-  .cell.grace{grid-column:1 / -1;background:#1b160a55}
-  .cell.grace .k{color:var(--grace)} .cell.grace .v{color:#f3ddb4}
+  .cell.grace{grid-column:1 / -1;background:rgba(236,202,140,0.08);border-top:1px solid rgba(236,202,140,0.15)}
+  .cell.grace .k{color:var(--grace)}
   .cell.full{grid-column:1 / -1}
+
+  /* Expanded Panel Cell Enhancements */
+  .cell.cue{background:rgba(143,160,163,0.02)}
+  .cell.counterfeit{background:rgba(154,127,166,0.025)}
+  .cell.promises{background:rgba(236,202,140,0.015)}
+  .cell.need{background:rgba(82,216,197,0.04)}
+  .cell.loop{background:rgba(154,127,166,0.05)}
+  .cell.trap{background:rgba(224,168,107,0.045)}
+
+  .cell.need .v{color:#8cfceb}
+  .cell.loop .v{color:#ebd5f5}
+  .cell.trap .v{color:#fce4ca}
+  .cell.grace .v{color:#fde8c5}
 
   /* GUARDRAILS */
   .guard{background:#1a140d;border:1px solid #4a3a23;border-radius:14px;padding:8px 28px 22px}
@@ -242,7 +257,10 @@
     .hero-grid{grid-template-columns:1fr;gap:30px}
     .hero .vessel-stage{order:-1;max-width:360px;margin:0 auto}
     .loop-wrap,.tiles,.wg,.threads,.moves{grid-template-columns:1fr}
-    .tiles{grid-template-columns:repeat(2,1fr)}
+    #tiles, #flaw-tiles, #axis-tiles{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:480px){
+    #tiles, #flaw-tiles, #axis-tiles{grid-template-columns:1fr}
     .rows{grid-template-columns:1fr}
     .cell:nth-child(odd){border-right:0}
     .case > button{flex-wrap:wrap}
@@ -448,7 +466,6 @@
       <span class="leak">falseness of the source is exactly what makes it loop.</span>
     </p>
     <p class="aug">
-      <span class="tag read">my reading</span>&nbsp; 
       <span class="v3-only">Augustine put the same thing as <em>disordered loves</em>: the trouble usually isn’t wanting something evil, it’s wanting something good in the wrong order or from the wrong place. The thirst is designed and right. The well is broken. Most of the suffering here comes from blaming the <em>desire</em> (“I’m weak,” “more discipline”) instead of the <em>sourcing</em>.</span>
       <span class="v4-only">Augustine formulated this as <em>ordo amoris</em> (ordered love) in <em>The City of God</em> (De civitate Dei, Book XV, Ch. 22): virtue is the proper ordering of love. Misery arises when we treat a lesser good (like status, escape, or performance) as the ultimate good, which belongs to the Source alone. Blaming the <em>thirst</em> (e.g. "I need more willpower") rather than the <em>source</em> keeps the soul running on empty.</span>
     </p>
@@ -462,7 +479,7 @@
       <div class="eyebrow">How it turns</div>
       <h2>The loop runs on <em style="color:var(--shame)">almost</em></h2>
       <p class="v3-only">If the counterfeit fully satisfied, you’d stop. Because it <em>almost</em> works, it reinforces — and the unmet need comes back sharper. That near-miss is the engine shared by a craving, a shame spiral, and the works treadmill.</p>
-      <p class="v4-only">This "almost satisfied" trigger corresponds to Kent Berridge’s neurobiological dissociation between **"wanting"** (incentive salience, driven by mesolimbic dopamine projecting from the VTA to the Nucleus Accumbens) and **"liking"** (hedonic satisfaction, driven by localized opioid hotspots). The counterfeit triggers a spike of dopaminergic anticipation, but fails to activate actual satisfaction. This negative prediction error keeps the dopamine system firing, driving you to repeat the routine even when you no longer enjoy the outcome.</p>
+      <p class="v4-only">This "almost satisfied" trigger corresponds to Kent Berridge’s neurobiological dissociation between <strong>"wanting"</strong> (incentive salience, driven by mesolimbic dopamine projecting from the VTA to the Nucleus Accumbens) and <strong>"liking"</strong> (hedonic satisfaction, driven by localized opioid hotspots). The counterfeit triggers a spike of dopaminergic anticipation, but fails to activate actual satisfaction. This negative prediction error keeps the dopamine system firing, driving you to repeat the routine even when you no longer enjoy the outcome.</p>
     </div>
     <div class="loop-wrap reveal">
       <svg class="loop" viewBox="0 0 480 360" role="img" aria-label="The compulsion loop with its two exits">
@@ -563,8 +580,8 @@
     <div class="sec-head reveal">
       <div class="eyebrow">The spine · old covenant / new covenant</div>
       <h2>A standard that demands, a source that supplies</h2>
-      <p class="v3-only"><span class="tag read">my reading</span>&nbsp; In a Pauline frame, the Law works like willpower: an external standard that <em>demands</em> performance but supplies no <em>power</em> to produce it. The New Covenant doesn’t raise the bar — it moves the source inside. <span style="color:var(--ink-faint)">(Sharpest in Protestant readings; Catholic, Orthodox, and Wesleyan traditions integrate works and participation differently.)</span></p>
-      <p class="v4-only"><span class="tag read">my reading</span>&nbsp; In a Pauline frame, the Law acts as a willpower system. In psychology, **Works** mirrors **introjected regulation** (Deci & Ryan's Self-Determination Theory)—performing to stave off guilt, processed by the brain as a high-cost, extrinsic "have-to" task. **Grace** represents **integrated motivation**—operating from a pre-established, secure identity, transforming obedience into a low-cost, intrinsic "want-to" response. The New Covenant doesn't raise the bar; it moves the source inside. <span style="color:var(--ink-faint)">(Note: Modern scholarship on the New Perspective on Paul views 'works of the law' primarily as covenant identity markers, adding historical-critical depth to this classical works-vs-grace contrast.)</span></p>
+      <p class="v3-only">In a Pauline frame, the Law works like willpower: an external standard that <em>demands</em> performance but supplies no <em>power</em> to produce it. The New Covenant doesn’t raise the bar — it moves the source inside. <span style="color:var(--ink-faint)">(Sharpest in Protestant readings; Catholic, Orthodox, and Wesleyan traditions integrate works and participation differently.)</span></p>
+      <p class="v4-only">In a Pauline frame, the Law acts as a willpower system. In psychology, <strong>Works</strong> mirrors <strong>introjected regulation</strong> (Deci & Ryan's Self-Determination Theory)—performing to stave off guilt, processed by the brain as a high-cost, extrinsic "have-to" task. <strong>Grace</strong> represents <strong>integrated motivation</strong>—operating from a pre-established, secure identity, transforming obedience into a low-cost, intrinsic "want-to" response. The New Covenant doesn't raise the bar; it moves the source inside. <span style="color:var(--ink-faint)">(Note: Modern scholarship on the New Perspective on Paul views 'works of the law' primarily as covenant identity markers, adding historical-critical depth to this classical works-vs-grace contrast.)</span></p>
     </div>
     <div class="wg reveal">
       <div class="wg-col old">
@@ -610,7 +627,7 @@
       <div class="thread"><div class="n">iv</div><h3>Closed vs. received</h3>
         <p>A sealed system where the self is both agent and source — versus something taken from outside. The exit isn’t a better move <em>inside</em> the loop; it’s a different well.</p></div>
       <div class="thread deep"><div class="n">∴</div><h3>The denominator under the denominators</h3>
-        <p><span class="tag read">my reading</span>&nbsp; Strip the four down and you get one line: <b>a good desire routed to a false source, where the falseness is what keeps it spinning.</b> That’s why grace is the structural counterpart, not just the religious item on the list — it doesn’t shame the thirst, it relocates the well.</p></div>
+        <p>Strip the four down and you get one line: <b>a good desire routed to a false source, where the falseness is what keeps it spinning.</b> That’s why grace is the structural counterpart, not just the religious item on the list — it doesn’t shame the thirst, it relocates the well.</p></div>
     </div>
   </div>
 </section>
@@ -707,7 +724,7 @@
       <div class="gp"><p><b>Tradition-dependence.</b> The crisp “law = pure demand, works vs. grace” framing is most at home in Reformed/Lutheran Protestantism; other traditions would say it under-reads participation. This is <em>a</em> coherent reading, not the only faithful one.</p></div>
       <div class="gp">
         <p class="v3-only"><b>One borrowed prop, flagged:</b> “ego depletion” — willpower as a draining battery — has largely failed to replicate since ~2015. The shame loop is real as lived experience; the fuel-tank metaphor is shaky. The “habit loop” model is useful pop-psychology, not settled science.</p>
-        <p class="v4-only"><b>The willpower model, updated:</b> The "ego depletion" model (willpower as a draining metabolic battery) has failed to replicate since 2015. Modern neuroscience replaces it with **opportunity cost** (Kurzban) and **motivational shifting** (Inzlicht) models. Willpower doesn't "run out"; rather, under stress (like shame), the brain shifts priorities from high-cost, extrinsic "have-to" tasks (Works) to "want-to" tasks (Counterfeits). Grace reduces this cognitive tax by securing identity upfront. Meanwhile, the habit loop is refined by **outcome insensitivity**—once a routine is automated in the dorsolateral striatum, the cue triggers it directly regardless of the reward's value.</p>
+        <p class="v4-only"><b>The willpower model, updated:</b> The "ego depletion" model (willpower as a draining metabolic battery) has failed to replicate since 2015. Modern neuroscience replaces it with <strong>opportunity cost</strong> (Kurzban) and <strong>motivational shifting</strong> (Inzlicht) models. Willpower doesn't "run out"; rather, under stress (like shame), the brain shifts priorities from high-cost, extrinsic "have-to" tasks (Works) to "want-to" tasks (Counterfeits). Grace reduces this cognitive tax by securing identity upfront. Meanwhile, the habit loop is refined by <strong>outcome insensitivity</strong>—once a routine is automated in the dorsolateral striatum, the cue triggers it directly regardless of the reward's value.</p>
       </div>
     </div>
   </div>
@@ -785,9 +802,9 @@ function renderPanel(a){panelx.innerHTML=`
   <div class="panelx-head"><span style="font-size:26px">${a.i}</span>
     <span class="big">${a.t}</span><span class="sub">the same anatomy, your version</span></div>
   <div class="rows">
-    <div class="cell"><div class="k">The cue</div><div class="v">${a.cue}</div></div>
-    <div class="cell"><div class="k">The counterfeit routine</div><div class="v">${a.counterfeit}</div></div>
-    <div class="cell"><div class="k">What it promises</div><div class="v">${a.promises}</div></div>
+    <div class="cell cue"><div class="k">The cue</div><div class="v">${a.cue}</div></div>
+    <div class="cell counterfeit"><div class="k">The counterfeit routine</div><div class="v">${a.counterfeit}</div></div>
+    <div class="cell promises"><div class="k">What it promises</div><div class="v">${a.promises}</div></div>
     <div class="cell need"><div class="k">The real need underneath</div><div class="v">${a.need}</div></div>
     <div class="cell loop full"><div class="k">Why it loops</div><div class="v">${a.loop}</div></div>
     <div class="cell trap full"><div class="k">The works-trap (“just stop”)</div><div class="v">${a.trap}</div></div>
@@ -833,9 +850,9 @@ function renderFlawPanel(a){flawPanelx.innerHTML=`
   <div class="panelx-head"><span style="font-size:26px">${a.i}</span>
     <span class="big">${a.t}</span><span class="sub">the character flaw loop, your version</span></div>
   <div class="rows">
-    <div class="cell"><div class="k">The cue / trigger</div><div class="v">${a.cue}</div></div>
-    <div class="cell"><div class="k">The counterfeit routine</div><div class="v">${a.counterfeit}</div></div>
-    <div class="cell"><div class="k">What it promises</div><div class="v">${a.promises}</div></div>
+    <div class="cell cue"><div class="k">The cue / trigger</div><div class="v">${a.cue}</div></div>
+    <div class="cell counterfeit"><div class="k">The counterfeit routine</div><div class="v">${a.counterfeit}</div></div>
+    <div class="cell promises"><div class="k">What it promises</div><div class="v">${a.promises}</div></div>
     <div class="cell need"><div class="k">The real need underneath</div><div class="v">${a.need}</div></div>
     <div class="cell loop full"><div class="k">Why it loops (reinforcing feedback)</div><div class="v">${a.loop}</div></div>
     <div class="cell trap full"><div class="k">The works-trap (“just stop / try harder”)</div><div class="v">${a.trap}</div></div>
@@ -877,9 +894,9 @@ function renderAxisPanel(a){axisPanelx.innerHTML=`
   <div class="panelx-head"><span style="font-size:26px">${a.i}</span>
     <span class="big">${a.t}</span><span class="sub">the identity axis loop, your version</span></div>
   <div class="rows">
-    <div class="cell"><div class="k">The core desire / fear</div><div class="v">${a.cue}</div></div>
-    <div class="cell"><div class="k">The counterfeit well</div><div class="v">${a.counterfeit}</div></div>
-    <div class="cell"><div class="k">What it promises</div><div class="v">${a.promises}</div></div>
+    <div class="cell cue"><div class="k">The core desire / fear</div><div class="v">${a.cue}</div></div>
+    <div class="cell counterfeit"><div class="k">The counterfeit well</div><div class="v">${a.counterfeit}</div></div>
+    <div class="cell promises"><div class="k">What it promises</div><div class="v">${a.promises}</div></div>
     <div class="cell need"><div class="k">The real need underneath</div><div class="v">${a.need}</div></div>
     <div class="cell loop full"><div class="k">Why it loops (reinforcing feedback)</div><div class="v">${a.loop}</div></div>
     <div class="cell trap full"><div class="k">The works-trap (“just stop / try harder”)</div><div class="v">${a.trap}</div></div>
@@ -901,8 +918,8 @@ const note=document.getElementById('loopNote'),ring=document.getElementById('rin
 const NOTES={
  force:`<span class="v3-only"><b>By force.</b> You attack the routine with willpower. But the loop is largely automatic, so effort mostly feeds the shame — and shame is itself a cue back into the counterfeit. The cure becomes the disease. <span class="tag text">Romans 7</span></span>
         <span class="v4-only"><b>By force (Willpower).</b> You attempt to suppress the DLS habit loop using top-down PFC control. Because this effort is driven by shame, it acts as a stressor, triggering cortisol/catecholamine release that downregulates the PFC. The attempt to override the habit fails, and the guilt feeds the cue. <span class="tag text">Rom 7</span></span>`,
- grace:`<span class="v3-only"><b>By grace.</b> You don’t out-muscle the ring; you step out of it — taking the <em>real need</em> at the top to a source that actually fills it. The need stops feeding the counterfeit, so the loop loses its fuel. <span class="tag read">my reading</span></span>
-        <span class="v4-only"><b>By grace (Re-sourcing).</b> You do not attempt to suppress the loop through cognitive grit. Instead, you address the baseline threat/need by anchoring your worth in a received standing. The opportunity cost of avoiding the counterfeit falls, leaving the DLS habit unfueled. <span class="tag read">my reading</span></span>`
+ grace:`<span class="v3-only"><b>By grace.</b> You don’t out-muscle the ring; you step out of it — taking the <em>real need</em> at the top to a source that actually fills it. The need stops feeding the counterfeit, so the loop loses its fuel.</span>
+        <span class="v4-only"><b>By grace (Re-sourcing).</b> You do not attempt to suppress the loop through cognitive grit. Instead, you address the baseline threat/need by anchoring your worth in a received standing. The opportunity cost of avoiding the counterfeit falls, leaving the DLS habit unfueled.</span>`
 };
 note.innerHTML=NOTES.force;
 tgl.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;
@@ -922,34 +939,39 @@ if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
 /* CASES */
 const CASES=[
  {ref:"JOHN 4:1–26",title:"The woman at the well",pill:"the metaphor, literal",
-  body:`<p class="v3-only">She comes to a literal well at noon, alone — and has had five husbands, looking for in people what they couldn’t hold. <span class="tag text">from the text</span> Jesus offers “living water,” a spring that ends the daily trip. The whole page’s metaphor, acted out: counterfeit wells you keep returning to vs. a source that satisfies <span class="tag read">my reading</span>.</p>
-        <p class="v4-only">Jesus offers "living water"—a self-replenishing spring (*māqôr*) that ends her daily trip to a stagnant cistern (*bôr*). <span class="tag text">from the text</span> While homiletically applied to serial relationship codependency (her five husbands), first-century context suggests she was likely a victim of multiple abandonments or tragedies beyond her control. Eastern Orthodox tradition venerates her as **St. Photini**, a powerful evangelist and martyr, highlighting her immediate theological and apostolic transformation <span class="tag read">my reading</span>.</p>`},
+  body:`<p class="v3-only">She comes to a literal well at noon, alone — and has had five husbands, looking for in people what they couldn’t hold. <span class="tag text">from the text</span> Jesus offers “living water,” a spring that ends the daily trip. The whole page’s metaphor, acted out: counterfeit wells you keep returning to vs. a source that satisfies.</p>
+        <p class="v4-only">Jesus offers "living water"—a self-replenishing spring (<em>māqôr</em>) that ends her daily trip to a stagnant cistern (<em>bôr</em>). <span class="tag text">from the text</span> While homiletically applied to serial relationship codependency (her five husbands), first-century context suggests she was likely a victim of multiple abandonments or tragedies beyond her control. Eastern Orthodox tradition venerates her as <strong>St. Photini</strong>, a powerful evangelist and martyr, highlighting her immediate theological and apostolic transformation.</p>`},
  {ref:"ROMANS 7:15–24",title:"The wretched man",pill:"willpower / shame loop",
-  body:`<p class="v3-only">The “I” who does the evil it doesn’t want and not the good it wants — then cries, “who will rescue me?” The loop in its purest scriptural form <span class="tag text">from the text</span>. The hinge is the next breath, Rom 8:1: <em>no condemnation</em> — shame fuel removed, source swapped. 7→8 is works→grace in two verses <span class="tag read">my reading</span>.</p>
-        <p class="v4-only">The "I" who does the evil it hates is the classic scriptural picture of the willpower-shame loop. <span class="tag text">from the text</span> Reformed scholars view this as the regenerate Christian's ongoing battle with indwelling sin; Patristic, Eastern Orthodox, and Wesleyan traditions interpret it as the unregenerate person trying to keep the Law in the flesh. Either way, the escape hatch is Romans 8:1: *no condemnation*—removing the shame stressor that disables the prefrontal cortex, swapping the source from flesh to Spirit <span class="tag read">my reading</span>.</p>`},
+  body:`<p class="v3-only">The “I” who does the evil it doesn’t want and not the good it wants — then cries, “who will rescue me?” The loop in its purest scriptural form <span class="tag text">from the text</span>. The hinge is the next breath, Rom 8:1: <em>no condemnation</em> — shame fuel removed, source swapped. 7→8 is works→grace in two verses.</p>
+        <p class="v4-only">The "I" who does the evil it hates is the classic scriptural picture of the willpower-shame loop. <span class="tag text">from the text</span> Reformed scholars view this as the regenerate Christian's ongoing battle with indwelling sin; Patristic, Eastern Orthodox, and Wesleyan traditions interpret it as the unregenerate person trying to keep the Law in the flesh. Either way, the escape hatch is Romans 8:1: <em>no condemnation</em>—removing the shame stressor that disables the prefrontal cortex, swapping the source from flesh to Spirit.</p>`},
  {ref:"LUKE 15",title:"Both sons (prodigal & elder)",pill:"two cisterns",
-  body:`<p class="v3-only">The younger son is the obvious broken cistern — far country, counterfeit comfort, empty pods. The <em>elder</em> is the works cistern: “all these years I served you… yet you never gave me.” <span class="tag text">from the text</span> Religious and irreligious, both leaking, both far from the father — and the elder is angrier <span class="tag read">my reading</span>.</p>
-        <p class="v4-only">The younger son seeks life in the counterfeit well of license (prodigality); the elder son seeks life in the counterfeit well of self-righteous service ("All these years I served you..."). <span class="tag text">from the text</span> Both sons are estranged from the father; one is lost in open rebellion, the other in religious performance (Works). In Catholic/Orthodox readings, the father's final feast also embodies rich Eucharistic and sacramental grace <span class="tag read">my reading</span>.</p>`},
+  body:`<p class="v3-only">The younger son is the obvious broken cistern — far country, counterfeit comfort, empty pods. The <em>elder</em> is the works cistern: “all these years I served you… yet you never gave me.” <span class="tag text">from the text</span> Religious and irreligious, both leaking, both far from the father — and the elder is angrier.</p>
+        <p class="v4-only">The younger son seeks life in the counterfeit well of license (prodigality); the elder son seeks life in the counterfeit well of self-righteous service ("All these years I served you..."). <span class="tag text">from the text</span> Both sons are estranged from the father; one is lost in open rebellion, the other in religious performance (Works). In Catholic/Orthodox readings, the father's final feast also embodies rich Eucharistic and sacramental grace.</p>`},
  {ref:"LUKE 18:9–14",title:"Pharisee & tax collector",pill:"works vs grace",
   body:`<p class="v3-only">The Pharisee’s prayer is self-referential performance — “I fast, I tithe, I’m not like other men.” The tax collector simply receives mercy. <span class="tag text">from the text</span> The verdict is the grace move: <em>this</em> one went home justified. The comparison loop, named.</p>
-        <p class="v4-only">The Pharisee seeks justification in comparative covenant performance ("I fast, I tithe..."), whereas the tax collector simply begs for mercy. <span class="tag text">from the text</span> The tax collector goes home justified (*dedikaiōmenos*). In Protestant theology, this is forensic imputation; in Catholic and Orthodox theology, it is the initiation of real, cooperative righteousness. The Pharisee's error is pride in comparison, not a crude buying of salvation.</p>`},
+        <p class="v4-only">The Pharisee seeks justification in comparative covenant performance ("I fast, I tithe..."), whereas the tax collector simply begs for mercy. <span class="tag text">from the text</span> The tax collector goes home justified (<em>dedikaiōmenos</em>). In Protestant theology, this is forensic imputation; in Catholic and Orthodox theology, it is the initiation of real, cooperative righteousness. The Pharisee's error is pride in comparison, not a crude buying of salvation.</p>`},
  {ref:"NUMBERS 11",title:"Israel craving Egypt",pill:"relapse to old comfort",
-  body:`<p class="v3-only">Freshly delivered by grace, they crave the fleshpots of Egypt — romanticizing slavery because it was <em>familiar</em>. <span class="tag text">from the text</span> The pull back to the old comfort behavior, dressed up as need <span class="tag read">my reading</span>.</p>
-        <p class="v4-only">Newly delivered into freedom, Israel craves Egypt's fleshpots because they were *predictable*. <span class="tag text">from the text</span> Under the stress of the wilderness, their prefrontal cortex downregulates, and the brain defaults to the familiar DLS (habitual) routines of slavery to cope with anxiety. Patristic writers used this to illustrate the *passions*—how the soul defaults to old comforts <span class="tag read">my reading</span>.</p>`},
+  body:`<p class="v3-only">Freshly delivered by grace, they crave the fleshpots of Egypt — romanticizing slavery because it was <em>familiar</em>. <span class="tag text">from the text</span> The pull back to the old comfort behavior, dressed up as need.</p>
+        <p class="v4-only">Newly delivered into freedom, Israel craves Egypt's fleshpots because they were <em>predictable</em>. <span class="tag text">from the text</span> Under the stress of the wilderness, their prefrontal cortex downregulates, and the brain defaults to the familiar DLS (habitual) routines of slavery to cope with anxiety. Patristic writers used this to illustrate the <em>passions</em>—how the soul defaults to old comforts.</p>`},
  {ref:"JOHN 18 / 21",title:"Peter (vs Judas)",pill:"loop broken by grace",
-  body:`<p class="v3-only">Peter boasts in willpower (“though all fall away, I won’t”), fails three times, weeps. Restoration in John 21 is the tell: not “try harder” but three “do you love me?”s — identity re-sourced through relationship. <span class="tag text">from the text</span> Beside Judas: same failure, two ends — godly grief to life, worldly grief to death (2 Cor 7:10) <span class="tag read">my reading</span>.</p>
-        <p class="v4-only">Peter boasts in top-down willpower ("I will not deny you"), fails, and falls into a shame spiral. Jesus restores him in John 21 by asking three times, "Do you love me?" <span class="tag text">from the text</span> Modern Johannine scholars point out *agapaō* and *phileō* are used here as stylistic synonyms. The three questions mirror his three denials, moving him from performance anxiety to a relational commission: "Feed my sheep." He is restored *for* a vocation, breaking the shame loop <span class="tag read">my reading</span>.</p>`},
+  body:`<p class="v3-only">Peter boasts in willpower (“though all fall away, I won’t”), fails three times, weeps. Restoration in John 21 is the tell: not “try harder” but three “do you love me?”s — identity re-sourced through relationship. <span class="tag text">from the text</span> Beside Judas: same failure, two ends — godly grief to life, worldly grief to death (2 Cor 7:10).</p>
+        <p class="v4-only">Peter boasts in top-down willpower ("I will not deny you"), fails, and falls into a shame spiral. Jesus restores him in John 21 by asking three times, "Do you love me?" <span class="tag text">from the text</span> Modern Johannine scholars point out <em>agapaō</em> and <em>phileō</em> are used here as stylistic synonyms. The three questions mirror his three denials, moving him from performance anxiety to a relational commission: "Feed my sheep." He is restored <em>for</em> a vocation, breaking the shame loop.</p>`},
  {ref:"LUKE 19:1–10",title:"Zacchaeus",pill:"grace before works",
   body:`<p class="v3-only">Jesus comes to his house <em>first</em>; only then does the generosity pour out. <span class="tag text">from the text</span> Fruit follows reception — it doesn’t earn it. The order the whole “practicals” section depends on.</p>
-        <p class="v4-only">Jesus initiates the relationship by coming to his house *first*, preceding any repentance. <span class="tag text">from the text</span> Zacchaeus's transformation (giving half to the poor and restoring fourfold) flows from this received worth. Catholic/Orthodox theologians point to this as a key example of *synergia*—where human cooperation actively participates in the initial work of grace, showing that grace does not abolish effort but relocates its engine.</p>`}
+        <p class="v4-only">Jesus initiates the relationship by coming to his house <em>first</em>, preceding any repentance. <span class="tag text">from the text</span> Zacchaeus's transformation (giving half to the poor and restoring fourfold) flows from this received worth. Catholic/Orthodox theologians point to this as a key example of <em>synergia</em>—where human cooperation actively participates in the initial work of grace, showing that grace does not abolish effort but relocates its engine.</p>`}
 ];
 const cases=document.getElementById('cases');
-CASES.forEach(c=>{const d=document.createElement('div');d.className='case';
+CASES.forEach(c=>{const d=document.createElement('div');d.className='case open';
   d.innerHTML=`<button><span class="ref">${c.ref}</span><span class="title">${c.title}</span>
     <span class="pill">${c.pill}</span><span class="chev">›</span></button>
-    <div class="body"><div class="body-inner">${c.body}</div></div>`;
+    <div class="body" style="max-height:none"><div class="body-inner">${c.body}</div></div>`;
   const body=d.querySelector('.body');
-  d.querySelector('button').onclick=()=>{const open=d.classList.toggle('open');
+  d.querySelector('button').onclick=()=>{
+    if(body.style.maxHeight==='none'){
+      body.style.maxHeight=body.scrollHeight+'px';
+      body.offsetHeight; // force reflow
+    }
+    const open=d.classList.toggle('open');
     body.style.maxHeight=open?body.scrollHeight+'px':'0';};
   cases.appendChild(d);});
 
