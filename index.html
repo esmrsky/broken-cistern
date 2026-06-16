@@ -78,6 +78,19 @@
   .gflow{stroke-dasharray:5 6;animation:flow 1s linear infinite}
   @keyframes flow{to{stroke-dashoffset:-22}}
 
+  /* DYNAMIC LOOP ANIMATION CSS */
+  .node-group {
+    transform-box: fill-box;
+    transform-origin: center;
+    will-change: transform;
+  }
+  .node-group circle {
+    transition: filter 0.1s ease;
+  }
+  .node-group text {
+    transition: fill 0.1s ease, font-weight 0.15s ease;
+  }
+
   /* TILES + PANEL */
   .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   #flaw-tiles{grid-template-columns:repeat(3,1fr)}
@@ -448,22 +461,46 @@
         <!-- inner try-harder -->
         <path id="forceArrow" d="M115 142 Q175 220 282 232" fill="none" stroke="#9a7fa6" stroke-width="1.6" marker-end="url(#aShame)"/>
         <text id="forceLbl" x="168" y="183" font-family="IBM Plex Mono,monospace" font-size="11" fill="#9a7fa6" font-style="italic">try harder ↻</text>
-        <!-- grace exit -->
+        <!-- grace exit visual -->
         <path id="graceArrow" d="M212 72 Q384 48 448 150" fill="none" stroke="#ecca8c" stroke-width="2" stroke-dasharray="4 5" marker-end="url(#aGrace)" opacity="0"/>
-        <text id="graceLbl" x="455" y="134" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="11" fill="#ecca8c" opacity="0">re-source ↗</text>
+        
+        <!-- hidden paths for JS animation tracking -->
+        <path id="loopPath" d="M 200 75 A 110 110 0 1 1 199.99 75 Z" fill="none" stroke="none" style="display:none;"></path>
+        <path id="gracePath" d="M 200 75 Q 384 48 448 150" fill="none" stroke="none" style="display:none;"></path>
+
         <!-- nodes -->
-        <g font-family="IBM Plex Mono,monospace" font-size="11.5" fill="#e9f0ee">
-          <circle cx="200" cy="75" r="6" fill="#52d8c5"/><text x="200" y="58" text-anchor="middle">real need</text>
-          <circle cx="295" cy="130" r="5" fill="#9a7fa6"/><text x="312" y="127">cue</text>
-          <circle cx="295" cy="240" r="5" fill="#9a7fa6"/><text x="312" y="245">counterfeit</text>
-          <circle cx="200" cy="295" r="5" fill="#9a7fa6"/><text x="200" y="316" text-anchor="middle">brief relief</text>
-          <circle cx="105" cy="240" r="5" fill="#9a7fa6"/><text x="88" y="245" text-anchor="end">need returns</text>
-          <circle cx="105" cy="130" r="5" fill="#9a7fa6"/><text x="88" y="127" text-anchor="end">shame</text>
+        <g id="nodesContainer" font-family="IBM Plex Mono,monospace" font-size="11.5" fill="#e9f0ee">
+          <g id="node-need" class="node-group">
+            <circle cx="200" cy="75" r="6" fill="#52d8c5"/>
+            <text x="200" y="58" text-anchor="middle">real need</text>
+          </g>
+          <g id="node-cue" class="node-group">
+            <circle cx="295" cy="130" r="5" fill="#9a7fa6"/>
+            <text x="312" y="127">cue</text>
+          </g>
+          <g id="node-counterfeit" class="node-group">
+            <circle cx="295" cy="240" r="5" fill="#9a7fa6"/>
+            <text x="312" y="245">counterfeit</text>
+          </g>
+          <g id="node-relief" class="node-group">
+            <circle cx="200" cy="295" r="5" fill="#9a7fa6"/>
+            <text x="200" y="316" text-anchor="middle">brief relief</text>
+          </g>
+          <g id="node-returns" class="node-group">
+            <circle cx="105" cy="240" r="5" fill="#9a7fa6"/>
+            <text x="88" y="245" text-anchor="end">need returns</text>
+          </g>
+          <g id="node-shame" class="node-group">
+            <circle cx="105" cy="130" r="5" fill="#9a7fa6"/>
+            <text x="88" y="127" text-anchor="end">shame</text>
+          </g>
+          <g id="node-resource" class="node-group" style="opacity: 0; transition: opacity 0.3s ease;">
+            <text id="graceLbl" x="455" y="134" text-anchor="end" fill="#ecca8c" font-weight="bold">re-source ↗</text>
+          </g>
         </g>
-        <circle id="pulse" r="4.5" fill="#c9a8d4">
-          <animateMotion dur="7s" repeatCount="indefinite" rotate="auto"
-            path="M 200 75 A 110 110 0 0 1 200 295 A 110 110 0 0 1 200 75"/>
-        </circle>
+        
+        <!-- rotating pulsing dot -->
+        <circle id="pulse" r="4.5" fill="#c9a8d4" cx="200" cy="75" style="filter: drop-shadow(0 0 5px #c9a8d4); transition: fill 0.3s;"></circle>
       </svg>
       <div class="loop-controls">
         <div class="toggle" id="loopToggle">
@@ -840,24 +877,173 @@ AXES.forEach((a,idx)=>{const b=document.createElement('button');
   axisTiles.appendChild(b);});
 renderAxisPanel(AXES[0]);
 
-/* LOOP TOGGLE */
+/* LOOP TOGGLE & ANIMATION */
 const note=document.getElementById('loopNote'),ring=document.getElementById('ring'),
  fA=document.getElementById('forceArrow'),fL=document.getElementById('forceLbl'),
  gA=document.getElementById('graceArrow'),gL=document.getElementById('graceLbl'),
  tgl=document.getElementById('loopToggle');
 const NOTES={
- force:`<b>By force.</b> You attack the routine with willpower. But the loop is largely automatic, so effort mostly feeds the shame — and shame is itself a cue back into the counterfeit. The cure becomes the disease. <span class="tag text">Romans 7</span></span>`,
+ force:`<b>By force.</b> You attack the routine with willpower. But the loop is largely automatic, so effort mostly feeds the shame — and shame is itself a cue back into the counterfeit. The cure becomes the disease. <span class="tag text">Romans 7</span>`,
  grace:`<b>By grace.</b> You don’t out-muscle the ring; you step out of it — taking the <em>real need</em> at the top to a source that actually fills it. The need stops feeding the counterfeit, so the loop loses its fuel.`
 };
 note.innerHTML=NOTES.force;
+
+// Animation Setup
+const loopPath = document.getElementById('loopPath');
+const gracePath = document.getElementById('gracePath');
+const pulse = document.getElementById('pulse');
+
+const loopLength = loopPath.getTotalLength();
+const graceLength = gracePath.getTotalLength();
+
+const animNodes = [
+  { id: 'node-need', x: 200, y: 75 },
+  { id: 'node-cue', x: 295, y: 130 },
+  { id: 'node-counterfeit', x: 295, y: 240 },
+  { id: 'node-relief', x: 200, y: 295 },
+  { id: 'node-returns', x: 105, y: 240 },
+  { id: 'node-shame', x: 105, y: 130 },
+  { id: 'node-resource', x: 448, y: 140 }
+];
+
+let animProgress = 0;
+let animMode = 'force'; // 'force' or 'grace'
+let lastTime = performance.now();
+let prefersReducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+function animateLoop(time) {
+  if (prefersReducedMotion) {
+    pulse.setAttribute('cx', 200);
+    pulse.setAttribute('cy', 75);
+    pulse.setAttribute('r', 4.5);
+    return;
+  }
+  
+  const dt = time - lastTime;
+  lastTime = time;
+  
+  const duration = animMode === 'force' ? 7000 : 3500;
+  animProgress += dt / duration;
+  
+  let currentPath = loopPath;
+  let currentLength = loopLength;
+  
+  if (animMode === 'grace') {
+    currentPath = gracePath;
+    currentLength = graceLength;
+  }
+  
+  if (animProgress >= 1) {
+    if (animMode === 'force') {
+      animProgress %= 1;
+    } else {
+      animProgress = 0;
+    }
+  }
+  
+  const dist = animProgress * currentLength;
+  const pt = currentPath.getPointAtLength(dist);
+  
+  pulse.setAttribute('cx', pt.x);
+  pulse.setAttribute('cy', pt.y);
+  
+  let minNodeGlow = 0;
+  
+  animNodes.forEach(node => {
+    const el = document.getElementById(node.id);
+    if (!el) return;
+    
+    const dx = pt.x - node.x;
+    const dy = pt.y - node.y;
+    const d = Math.hypot(dx, dy);
+    
+    const maxDist = node.id === 'node-resource' ? 45 : 35;
+    let scale = 1;
+    let glow = 0;
+    
+    if (d < maxDist) {
+      const t = 1 - d / maxDist;
+      const ease = t * t * (3 - 2 * t); // smoothstep
+      scale = 1 + 0.3 * ease;
+      glow = ease;
+      
+      if (glow > minNodeGlow) {
+        minNodeGlow = glow;
+      }
+    }
+    
+    el.style.transform = `scale(${scale})`;
+    
+    const circle = el.querySelector('circle');
+    if (circle) {
+      const baseR = node.id === 'node-need' ? 6 : 5;
+      circle.setAttribute('r', baseR * (1 + 0.25 * glow));
+      if (glow > 0.1) {
+        circle.style.filter = `drop-shadow(0 0 ${4 * glow}px ${circle.getAttribute('fill')})`;
+      } else {
+        circle.style.filter = '';
+      }
+    }
+    
+    const text = el.querySelector('text');
+    if (text) {
+      text.style.fill = glow > 0.15 ? '#ffffff' : '';
+      text.style.fontWeight = glow > 0.4 ? 'bold' : '';
+    }
+  });
+  
+  const basePulseR = 4.5;
+  pulse.setAttribute('r', basePulseR + 3 * minNodeGlow);
+  
+  if (animMode === 'grace') {
+    pulse.setAttribute('fill', '#ecca8c');
+    pulse.style.filter = `drop-shadow(0 0 ${5 + 4 * minNodeGlow}px #ecca8c)`;
+    if (animProgress > 0.8) {
+      pulse.style.opacity = (1 - animProgress) / 0.2;
+    } else if (animProgress < 0.1) {
+      pulse.style.opacity = animProgress / 0.1;
+    } else {
+      pulse.style.opacity = '1';
+    }
+  } else {
+    pulse.setAttribute('fill', '#c9a8d4');
+    pulse.style.filter = `drop-shadow(0 0 ${4 + 4 * minNodeGlow}px #c9a8d4)`;
+    pulse.style.opacity = '1';
+  }
+  
+  requestAnimationFrame(animateLoop);
+}
+
+// Start loop animation
+requestAnimationFrame(time => {
+  lastTime = time;
+  requestAnimationFrame(animateLoop);
+});
+
 tgl.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;
   [...tgl.children].forEach(b=>b.classList.remove('on'));btn.classList.add('on');
   const grace=btn.dataset.mode==='grace';note.innerHTML=grace?NOTES.grace:NOTES.force;
   tgl.classList.toggle('grace',grace);
-  gA.style.opacity=grace?'0.95':'0';gL.style.opacity=grace?'1':'0';
+  
+  animMode = grace ? 'grace' : 'force';
+  animProgress = 0;
+  
+  gA.style.opacity=grace?'0.95':'0';
+  const nodeResource = document.getElementById('node-resource');
+  if (nodeResource) nodeResource.style.opacity = grace ? '1' : '0';
+  
   fA.style.opacity=grace?'0.18':'0.9';fL.style.opacity=grace?'0.25':'1';
   ring.setAttribute('stroke',grace?'#2f8a80':'#5b4a64');
   gA.classList.toggle('gflow',grace);});
+
+// Listen to prefers-reduced-motion changes dynamically
+window.matchMedia('(prefers-reduced-motion:reduce)').addEventListener('change', e => {
+  prefersReducedMotion = e.matches;
+  if (!prefersReducedMotion) {
+    lastTime = performance.now();
+    requestAnimationFrame(animateLoop);
+  }
+});
 
 /* Respect reduced motion: pause all SMIL animations */
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
