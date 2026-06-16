@@ -216,43 +216,8 @@
   footer .serif{color:var(--ink-dim)}
   footer .mono{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint)}
 
-  /* VERSION TOGGLE */
-  .v-toggle-wrap {
-    position: fixed;
-    top: 20px;
-    right: 24px;
-    z-index: 1000;
-    display: flex;
-    background: rgba(11, 22, 24, 0.75);
-    border: 1px solid var(--line);
-    border-radius: 99px;
-    padding: 3px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  }
-  .v-toggle-wrap button {
-    background: transparent;
-    border: 0;
-    color: var(--ink-faint);
-    padding: 6px 14px;
-    border-radius: 99px;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 11px;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-  .v-toggle-wrap button.active {
-    background: #102b29;
-    color: var(--living);
-    box-shadow: 0 0 0 1px var(--living-dim) inset;
-  }
+   /* VERSION TOGGLE */
   
-  /* Version Visibility rules */
-  body.v3-mode .v4-only { display: none !important; }
-  body.v4-mode .v3-only { display: none !important; }
-
   @media(max-width:840px){
     .hero-grid{grid-template-columns:1fr;gap:30px}
     .hero .vessel-stage{order:-1;max-width:360px;margin:0 auto}
@@ -273,12 +238,6 @@
 </style>
 </head>
 <body>
-
-<!-- VERSION TOGGLE -->
-<div class="v-toggle-wrap" role="group" aria-label="Version selector">
-  <button id="toggle-v3" class="active" onclick="switchVersion('v3')">V3: Original</button>
-  <button id="toggle-v4" onclick="switchVersion('v4')">V4: Integrated</button>
-</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -466,8 +425,7 @@
       <span class="leak">falseness of the source is exactly what makes it loop.</span>
     </p>
     <p class="aug">
-      <span class="v3-only">Augustine put the same thing as <em>disordered loves</em>: the trouble usually isn’t wanting something evil, it’s wanting something good in the wrong order or from the wrong place. The thirst is designed and right. The well is broken. Most of the suffering here comes from blaming the <em>desire</em> (“I’m weak,” “more discipline”) instead of the <em>sourcing</em>.</span>
-      <span class="v4-only">Augustine formulated this as <em>ordo amoris</em> (ordered love) in <em>The City of God</em> (De civitate Dei, Book XV, Ch. 22): virtue is the proper ordering of love. Misery arises when we treat a lesser good (like status, escape, or performance) as the ultimate good, which belongs to the Source alone. Blaming the <em>thirst</em> (e.g. "I need more willpower") rather than the <em>source</em> keeps the soul running on empty.</span>
+      Augustine put the same thing as <em>disordered loves</em>: the trouble usually isn’t wanting something evil, it’s wanting something good in the wrong order or from the wrong place. The thirst is designed and right. The well is broken. Most of the suffering here comes from blaming the <em>desire</em> (“I’m weak,” “more discipline”) instead of the <em>sourcing</em>.
     </p>
   </div>
 </section>
@@ -478,8 +436,7 @@
     <div class="sec-head reveal">
       <div class="eyebrow">How it turns</div>
       <h2>The loop runs on <em style="color:var(--shame)">almost</em></h2>
-      <p class="v3-only">If the counterfeit fully satisfied, you’d stop. Because it <em>almost</em> works, it reinforces — and the unmet need comes back sharper. That near-miss is the engine shared by a craving, a shame spiral, and the works treadmill.</p>
-      <p class="v4-only">This "almost satisfied" trigger corresponds to Kent Berridge’s neurobiological dissociation between <strong>"wanting"</strong> (incentive salience, driven by mesolimbic dopamine projecting from the VTA to the Nucleus Accumbens) and <strong>"liking"</strong> (hedonic satisfaction, driven by localized opioid hotspots). The counterfeit triggers a spike of dopaminergic anticipation, but fails to activate actual satisfaction. This negative prediction error keeps the dopamine system firing, driving you to repeat the routine even when you no longer enjoy the outcome.</p>
+      <p>If the counterfeit fully satisfied, you’d stop. Because it <em>almost</em> works, it reinforces — and the unmet need comes back sharper. That near-miss is the engine shared by a craving, a shame spiral, and the works treadmill.</p>
     </div>
     <div class="loop-wrap reveal">
       <svg class="loop" viewBox="0 0 480 360" role="img" aria-label="The compulsion loop with its two exits">
@@ -580,8 +537,7 @@
     <div class="sec-head reveal">
       <div class="eyebrow">The spine · old covenant / new covenant</div>
       <h2>A standard that demands, a source that supplies</h2>
-      <p class="v3-only">In a Pauline frame, the Law works like willpower: an external standard that <em>demands</em> performance but supplies no <em>power</em> to produce it. The New Covenant doesn’t raise the bar — it moves the source inside. <span style="color:var(--ink-faint)">(Sharpest in Protestant readings; Catholic, Orthodox, and Wesleyan traditions integrate works and participation differently.)</span></p>
-      <p class="v4-only">In a Pauline frame, the Law acts as a willpower system. In psychology, <strong>Works</strong> mirrors <strong>introjected regulation</strong> (Deci & Ryan's Self-Determination Theory)—performing to stave off guilt, processed by the brain as a high-cost, extrinsic "have-to" task. <strong>Grace</strong> represents <strong>integrated motivation</strong>—operating from a pre-established, secure identity, transforming obedience into a low-cost, intrinsic "want-to" response. The New Covenant doesn't raise the bar; it moves the source inside. <span style="color:var(--ink-faint)">(Note: Modern scholarship on the New Perspective on Paul views 'works of the law' primarily as covenant identity markers, adding historical-critical depth to this classical works-vs-grace contrast.)</span></p>
+      <p>In a Pauline frame, the Law works like willpower: an external standard that <em>demands</em> performance but supplies no <em>power</em> to produce it. The New Covenant doesn’t raise the bar — it moves the source inside. <span style="color:var(--ink-faint)">(Sharpest in Protestant readings; Catholic, Orthodox, and Wesleyan traditions integrate works and participation differently.)</span></p>
     </div>
     <div class="wg reveal">
       <div class="wg-col old">
@@ -677,20 +633,17 @@
     <div class="steps reveal">
       <div class="step"><div class="num"></div><div>
         <h3>Re-order: worth before behavior</h3>
-        <p class="v3-only">Start at worth-as-given, then act <em>from</em> it. The one move that drains the shame loop, because it removes its fuel. <span class="scr">indicative → imperative</span></p>
-        <p class="v4-only">Start at worth-as-given (indicative), then act <em>from</em> it (imperative). This is Colossians 3:1–4—aligning with your received identity first, which drains the shame loop by removing its fuel. <span class="scr">Col 3:1-4 · indicative → imperative</span></p>
+        <p>Start at worth-as-given, then act <em>from</em> it. The one move that drains the shame loop, because it removes its fuel. <span class="scr">indicative → imperative</span></p>
       </div></div>
       
       <div class="step"><div class="num"></div><div>
         <h3>Replace, don’t just remove</h3>
-        <p class="v3-only">Deleting the routine leaves the craving shopping for a substitute. Keep the cue and the reward; swap what fills it. <span class="scr">Eph 4 · the swept house</span></p>
-        <p class="v4-only">Deleting the routine leaves the craving shopping for a substitute. Willpower/asceticism rules alone are "of no value in stopping the indulgence of the flesh" (Col 2:23). Keep the cue and reward; swap what fills it. <span class="scr">Eph 4 · Col 2:20-23</span></p>
+        <p>Deleting the routine leaves the craving shopping for a substitute. Keep the cue and the reward; swap what fills it. <span class="scr">Eph 4 · the swept house</span></p>
       </div></div>
       
       <div class="step"><div class="num"></div><div>
         <h3>Name the counterfeit and the need under it</h3>
-        <p class="v3-only">Ask what the well is promising — rest? worth? control? safety? Bring <em>that</em> to the real source instead of fighting the surface behavior.</p>
-        <p class="v4-only">Ask what the well is promising—rest? worth? control? safety? Stop spending "your labor for that which does not satisfy" (Isa 55:2). Bring the underlying hunger to the real source. <span class="scr">Isaiah 55:1-3</span></p>
+        <p>Ask what the well is promising — rest? worth? control? safety? Bring <em>that</em> to the real source instead of fighting the surface behavior.</p>
       </div></div>
       
       <div class="step"><div class="num"></div><div>
@@ -700,8 +653,7 @@
       
       <div class="step"><div class="num"></div><div>
         <h3>Cultivate a stronger affection</h3>
-        <p class="v3-only">Beholding as the discipline — the gaze, not the grit. You’re changed by what you attend to and love, not by white-knuckling. <span class="scr">2 Cor 3:18 · John 15 abide</span></p>
-        <p class="v4-only">Beholding as the discipline—the gaze, not the grit. You are changed by what you attend to and love, drinking from the internal "river of delights" (Ps 36:8 · John 7:38) rather than white-knuckling. <span class="scr">2 Cor 3:18 · John 7:37-39 · Ps 36:8-9</span></p>
+        <p>Beholding as the discipline — the gaze, not the grit. You’re changed by what you attend to and love, not by white-knuckling. <span class="scr">2 Cor 3:18 · John 15 abide</span></p>
       </div></div>
       
       <div class="step"><div class="num"></div><div>
@@ -723,8 +675,7 @@
       <div class="gp"><p><b>Is the loop ever fully over here? Unsettled.</b> Christians have argued for centuries whether Romans 7’s “wretched man” is the ongoing believer or the pre-Christian self. The practicals land differently depending on which way you read it. I can’t adjudicate that for you.</p></div>
       <div class="gp"><p><b>Tradition-dependence.</b> The crisp “law = pure demand, works vs. grace” framing is most at home in Reformed/Lutheran Protestantism; other traditions would say it under-reads participation. This is <em>a</em> coherent reading, not the only faithful one.</p></div>
       <div class="gp">
-        <p class="v3-only"><b>One borrowed prop, flagged:</b> “ego depletion” — willpower as a draining battery — has largely failed to replicate since ~2015. The shame loop is real as lived experience; the fuel-tank metaphor is shaky. The “habit loop” model is useful pop-psychology, not settled science.</p>
-        <p class="v4-only"><b>The willpower model, updated:</b> The "ego depletion" model (willpower as a draining metabolic battery) has failed to replicate since 2015. Modern neuroscience replaces it with <strong>opportunity cost</strong> (Kurzban) and <strong>motivational shifting</strong> (Inzlicht) models. Willpower doesn't "run out"; rather, under stress (like shame), the brain shifts priorities from high-cost, extrinsic "have-to" tasks (Works) to "want-to" tasks (Counterfeits). Grace reduces this cognitive tax by securing identity upfront. Meanwhile, the habit loop is refined by <strong>outcome insensitivity</strong>—once a routine is automated in the dorsolateral striatum, the cue triggers it directly regardless of the reward's value.</p>
+        <p><b>One borrowed prop, flagged:</b> “ego depletion” — willpower as a draining battery — has largely failed to replicate since ~2015. The shame loop is real as lived experience; the fuel-tank metaphor is shaky. The “habit loop” model is useful pop-psychology, not settled science.</p>
       </div>
     </div>
   </div>
@@ -735,66 +686,45 @@
     <p class="serif" style="font-size:18px;font-style:italic;margin:0 0 14px">
       “Whoever drinks of the water that I will give will never be thirsty again.” — John 4:14
     </p>
-    <p class="mono">A reading, not a verdict · Protestant/Pauline frame · <span class="v3-only">v3 (original)</span><span class="v4-only">v4 (rigorous neuro-theological integration)</span></p>
+    <p class="mono">A reading, not a verdict · Protestant/Pauline frame</p>
   </div>
 </footer>
 
 <script>
-/* VERSION SWITCHER LOGIC */
-function switchVersion(version) {
-  const isV4 = version === 'v4';
-  document.body.classList.toggle('v4-mode', isV4);
-  document.body.classList.toggle('v3-mode', !isV4);
-  
-  // Update toggle button states
-  const btnV3 = document.getElementById('toggle-v3');
-  const btnV4 = document.getElementById('toggle-v4');
-  if (btnV3) btnV3.classList.toggle('active', !isV4);
-  if (btnV4) btnV4.classList.toggle('active', isV4);
-  
-  // Persist state in localStorage
-  localStorage.setItem('bc_version', version);
-}
-
-// Auto-run on page load to initialize the active version
-(function() {
-  const saved = localStorage.getItem('bc_version') || 'v3';
-  switchVersion(saved);
-})();
 
 /* TRANSLATOR DATA */
 const ACTS=[
  {i:"📱",t:"Endless scrolling",cue:"A lull — boredom, anxiety, the minute before sleep.",counterfeit:"Open the app; chase the next novel thing.",promises:"Connection, stimulation, escape.",need:"Real connection, rest, to feel less alone.",
-  loop:`<span class="v3-only">Each hit almost lands; the loneliness comes back sharper after.</span><span class="v4-only">Dopamine projection (VTA to NAc) spikes in anticipation of novelty (incentive wanting), but the content fails to trigger hedonic hotspots (no liking). The loop runs on unsatisfied wanting.</span>`,
-  trap:`<span class="v3-only">“Just delete the app / have more discipline” — willpower against a subconscious cue. Usually fails, adds shame.</span><span class="v4-only">Top-down PFC control is downregulated by the stress of shame. Fighting automated habits (DLS) under stress is neurobiologically self-defeating.</span>`,
+  loop:`Each hit almost lands; the loneliness comes back sharper after.`,
+  trap:`“Just delete the app / have more discipline” — willpower against a subconscious cue. Usually fails, adds shame.`,
   grace:"Name it: connection or rest. Take it to a real well — a person, silence, prayer. Swap the routine; don’t only delete it."},
  {i:"💼",t:"Overworking",cue:"A quiet moment; idleness feels like falling behind.",counterfeit:"More output, more tasks, more busy.",promises:"Worth, security, proof you’re enough.",need:"To be valued and secure regardless of output.",
-  loop:`<span class="v3-only">Finishing never delivers the worth, so you re-earn it tomorrow. The works treadmill.</span><span class="v4-only">Success is treated as proof of survival worth (extrinsic regulation). Because finite credentials can never secure an infinite need, you must re-earn it tomorrow.</span>`,
-  trap:`<span class="v3-only">“Work harder so you’ll deserve rest” — same engine, productivity badge on.</span><span class="v4-only">Framing rest as an earned credential rather than a secure baseline keeps the opportunity cost of pausing high, accelerating cognitive fatigue.</span>`,
+  loop:`Finishing never delivers the worth, so you re-earn it tomorrow. The works treadmill.`,
+  trap:`“Work harder so you’ll deserve rest” — same engine, productivity badge on.`,
   grace:"Worth received before performance. Rest as gift, not reward — Sabbath as the anti-works act."},
  {i:"🍫",t:"Stress eating",cue:"Stress, fatigue, evening, an unfelt feeling.",counterfeit:"Food as soothing — the quick warm hit.",promises:"Comfort, calm, a break.",need:"Actual rest and comfort; to feel the feeling.",
-  loop:`<span class="v3-only">Comfort is brief, the stress untouched — now plus guilt, which is a fresh cue.</span><span class="v4-only">Food triggers localized hedonic hotspots (liking) but leaves the cortical stressor unresolved. The added guilt acts as a fresh stress cue.</span>`,
-  trap:`<span class="v3-only">Diet willpower → slip → shame → eat → repeat. The textbook spiral.</span><span class="v4-only">Using willpower to restrict behavior without addressing the emotional stressor. Once the PFC downregulates under stress, the DLS habit takes over.</span>`,
+  loop:`Comfort is brief, the stress untouched — now plus guilt, which is a fresh cue.`,
+  trap:`Diet willpower → slip → shame → eat → repeat. The textbook spiral.`,
   grace:"Name the feeling, meet the real need (rest, comfort from God/another), give the cue a different routine."},
  {i:"🙂",t:"People-pleasing",cue:"Fear of disapproval; love that has felt conditional.",counterfeit:"Say yes, perform, manage everyone’s mood.",promises:"Love, acceptance, belonging.",need:"To be loved unconditionally.",
-  loop:`<span class="v3-only">Approval earned has to be re-earned; it never converts into secure love.</span><span class="v4-only">Seeking social validation (introjected regulation). Because approval is transactional and conditional, it never stabilizes into secure attachment.</span>`,
-  trap:`<span class="v3-only">This is the Law applied to relationships — the elder brother’s “all these years I served you.”</span><span class="v4-only">Attempting to force love by keeping a behavioral performance ledger, recreating the Works treadmill in relationships.</span>`,
+  loop:`Approval earned has to be re-earned; it never converts into secure love.`,
+  trap:`This is the Law applied to relationships — the elder brother’s “all these years I served you.”`,
   grace:"Love as given, not earned. Identity secured outside everyone’s verdict."},
  {i:"🛒",t:"Retail therapy",cue:"A bad day; a vague sense of lack; a store already open in your hand.",counterfeit:"Buying — the rush of anticipation and acquisition.",promises:"Control, a fresh start, status, worth.",need:"Agency, comfort, to feel okay about yourself.",
-  loop:`<span class="v3-only">The wanting beats the having; the lack returns once the box arrives.</span><span class="v4-only">The dopaminergic reward prediction error (RPE) peaks at acquisition (the search/buy), but drops below baseline once the item is owned, leaving the void untouched.</span>`,
-  trap:`<span class="v3-only">“Budget harder / more self-control” — still sourcing worth from the cart.</span><span class="v4-only">Treating buying as a willpower failure rather than a misplaced search for agency and worth.</span>`,
+  loop:`The wanting beats the having; the lack returns once the box arrives.`,
+  trap:`“Budget harder / more self-control” — still sourcing worth from the cart.`,
   grace:"Name what the cart stands in for, and bring that lack to the source that actually fills it."},
  {i:"📰",t:"Doomscrolling",cue:"Anxiety about the world; needing to feel on top of it.",counterfeit:"Consume more information.",promises:"Control, safety, preparedness.",need:"A peace you can’t manufacture by knowing more.",
-  loop:`<span class="v3-only">More input raises the anxiety that drives more input.</span><span class="v4-only">Consuming information promises cognitive control, but the threat-centric data triggers amygdala activation, escalating the anxiety that drives the search.</span>`,
-  trap:`<span class="v3-only">“Just stay responsibly informed” — still sourcing peace from control.</span><span class="v4-only">Assuming that if you analyze enough variables, you can eliminate vulnerability. It is the Works treadmill of cognitive control.</span>`,
+  loop:`More input raises the anxiety that drives more input.`,
+  trap:`“Just stay responsibly informed” — still sourcing peace from control.`,
   grace:"Peace as received, not control-built. Trust is the exit from info-as-safety."},
  {i:"📸",t:"Comparison",cue:"Someone’s highlight reel scrolls past.",counterfeit:"Measure yourself; then perform and curate.",promises:"A stable sense of worth via ranking.",need:"Secure, non-comparative worth.",
-  loop:`<span class="v3-only">Ranking is unstable — someone’s always above. The Pharisee’s “not like other men.”</span><span class="v4-only">Comparative worth is a zero-sum game. The moment you rank yourself above one person, you accept a system where others rank above you, keeping identity volatile.</span>`,
-  trap:`<span class="v3-only">“Win the comparison / achieve more” — playing the game that is the trap.</span><span class="v4-only">Attempting to solve the pain of ranking by ranking higher. This is the ultimate self-justification loop.</span>`,
+  loop:`Ranking is unstable — someone’s always above. The Pharisee’s “not like other men.”`,
+  trap:`“Win the comparison / achieve more” — playing the game that is the trap.`,
   grace:"Worth that isn’t ranked — the tax collector’s received verdict: justified, not measured."},
  {i:"⏳",t:"Procrastinate + self-attack",cue:"A daunting task; fear of doing it badly.",counterfeit:"Avoid it, then beat yourself up about avoiding it.",promises:"Relief from the threat; an illusion that self-hatred = control.",need:"Safety to act imperfectly; worth that doesn’t ride on the outcome.",
-  loop:`<span class="v3-only">Avoidance raises the stakes → more fear → more avoidance → shame. Romans 7 in miniature.</span><span class="v4-only">Avoidance brings immediate relief from amygdala threat (negative reinforcement). The subsequent self-attack creates stress, which downregulates the PFC, making subsequent action harder.</span>`,
-  trap:`<span class="v3-only">“Discipline yourself / hate yourself into action.”</span><span class="v4-only">Attempting to whip the self into compliance. The self-inflicted shame increases the stress burden, locking the DLS habit loop.</span>`,
+  loop:`Avoidance raises the stakes → more fear → more avoidance → shame. Romans 7 in miniature.`,
+  trap:`“Discipline yourself / hate yourself into action.”`,
   grace:"No-condemnation as the ground that frees action — act from worth, not for it. (Rom 8:1)"}
 ];
 const tiles=document.getElementById('tiles'),panelx=document.getElementById('panelx');
@@ -821,28 +751,28 @@ renderPanel(ACTS[0]);
 /* FLAWS DATA */
 const FLAWS=[
  {i:"⚖️",t:"Perfectionism",cue:"A mistake, fear of failure, or a sense of personal insufficiency.",counterfeit:"Enforce rigid rules, over-prepare, and critical self-evaluation.",promises:"Control, safety from judgment, and proof of worthiness.",need:"Grace to be human, secure love that covers flaws, and rest.",
-  loop:`<span class="v3-only">High standards breed anxiety ➔ small slip happens ➔ self-attack triggers ➔ fear of failure increases ➔ standards rise.</span><span class="v4-only">Anxious standard-setting projects as a high-cost "have-to" task. Any minor error triggers the amygdala, prompting self-condemnation and higher standards to restore safety.</span>`,
-  trap:`<span class="v3-only">“Work harder to be flawless; have more discipline next time.” Willpower trying to solve standard-striving.</span><span class="v4-only">Attempting to solve standard-striving by increasing the standard. This is the classic self-justification treadmill (Works).</span>`,
+  loop:`High standards breed anxiety ➔ small slip happens ➔ self-attack triggers ➔ fear of failure increases ➔ standards rise.`,
+  trap:`“Work harder to be flawless; have more discipline next time.” Willpower trying to solve standard-striving.`,
   grace:"Worth received first, not earned by flawless output. Rest in being fully known and fully loved despite errors."},
  {i:"🛡️",t:"Hyper-Independence",cue:"Vulnerability, needing help, or feeling weak/exposed.",counterfeit:"Refuse assistance, isolate, and do everything yourself.",promises:"Safety, absolute self-reliance, and avoidance of rejection.",need:"Community, support, and secure connection with others.",
-  loop:`<span class="v3-only">Refusing help leads to burnout/exhaustion ➔ confirming the belief that 'no one is there' ➔ deeper self-reliance.</span><span class="v4-only">Isolating to avoid vulnerability triggers loneliness. The brain interprets social isolation as physical danger, accelerating stress and reinforcing self-reliance.</span>`,
-  trap:`<span class="v3-only">“I just need to be stronger and more capable.” Sourcing security entirely from self-sufficiency.</span><span class="v4-only">Attempting to solve the pain of isolation by deepening the isolation. Willpower applied to build a stronger wall.</span>`,
+  loop:`Refusing help leads to burnout/exhaustion ➔ confirming the belief that 'no one is there' ➔ deeper self-reliance.`,
+  trap:`“I just need to be stronger and more capable.” Sourcing security entirely from self-sufficiency.`,
   grace:"Accepting limits and dependence as a created gift. Admitting weakness is where real connection starts."},
  {i:"🌋",t:"Control / Anger",cue:"Feeling powerless, threatened, or out-of-control.",counterfeit:"Outbursts, micromanaging, demanding compliance.",promises:"Immediate safety, correcting the wrong, dominance.",need:"Deep internal safety, peace, trust in a good Protector.",
-  loop:`<span class="v3-only">Forcing compliance creates alienation and conflict ➔ the environment gets more chaotic ➔ safety drops ➔ anger increases.</span><span class="v4-only">Forced compliance alienates your community. This social fracture triggers a threat response, destabilizing your environment and increasing the fear that drives anger.</span>`,
-  trap:`<span class="v3-only">“Suppress the anger through willpower; grit your teeth.” Management instead of re-sourcing.</span><span class="v4-only">Grit-based self-repression (PFC) that fails to resolve the underlying sense of powerlessness, leading to explosive relapses.</span>`,
+  loop:`Forcing compliance creates alienation and conflict ➔ the environment gets more chaotic ➔ safety drops ➔ anger increases.`,
+  trap:`“Suppress the anger through willpower; grit your teeth.” Management instead of re-sourcing.`,
   grace:"Surrendering control of variables you cannot govern; finding security in a sovereign, loving Source."},
  {i:"🥀",t:"Martyrdom / Resentment",cue:"Feeling unappreciated, invisible, or overlooked.",counterfeit:"Quiet over-serving, boundary neglect, passive-aggressive remarks.",promises:"Moral superiority, forcing others to appreciate you.",need:"Unconditional validation and feeling seen.",
-  loop:`<span class="v3-only">Serving from deficit leads to exhaustion ➔ resentment builds and leaks out ➔ others pull away ➔ feeling even more unloved.</span><span class="v4-only">Serving from identity deficit (introjected regulation) causes cognitive exhaustion. Resentment leaks out, pushes others away, and confirms the fear that you are unloved.</span>`,
-  trap:`<span class="v3-only">“Be nicer; repress the anger; double down on serving.” Willpower fueling the resentment treadmill.</span><span class="v4-only">Using willpower to force outward compliance while inner resentment accumulates, building a self-justifying martyr identity.</span>`,
+  loop:`Serving from deficit leads to exhaustion ➔ resentment builds and leaks out ➔ others pull away ➔ feeling even more unloved.`,
+  trap:`“Be nicer; repress the anger; double down on serving.” Willpower fueling the resentment treadmill.`,
   grace:"Sourcing validation from received love first, letting go of the demand to control others' appraisal."},
  {i:"🏰",t:"Defensiveness / Pride",cue:"Constructive feedback, criticism, or an exposed failure.",counterfeit:"Blaming others, rationalizing mistakes, counter-attacking.",promises:"Protecting self-image, maintaining authority or status.",need:"Security to be wrong without losing basic value.",
-  loop:`<span class="v3-only">Deflection blocks correction/growth ➔ mistakes repeat ➔ more exposure threat ➔ defensiveness intensifies.</span><span class="v4-only">Deflection blocks feedback. Uncorrected mistakes repeat, creating fresh threats of exposure, which triggers high-alert defensiveness in the amygdala.</span>`,
-  trap:`<span class="v3-only">“Force myself to look humble; white-knuckle through critique.” Protecting the self-image by performing humility.</span><span class="v4-only">Using willpower to project an appearance of humility (extrinsic motivation) while internally shielding a fragile ego.</span>`,
+  loop:`Deflection blocks correction/growth ➔ mistakes repeat ➔ more exposure threat ➔ defensiveness intensifies.`,
+  trap:`“Force myself to look humble; white-knuckle through critique.” Protecting the self-image by performing humility.`,
   grace:"No condemnation means failure is safe to admit. Your worth is anchored, so critique is not a survival threat."},
  {i:"🎭",t:"Approval Seeking",cue:"Fear of rejection or potential disapproval.",counterfeit:"Say yes to everything, morph to fit in, manage everyone's mood.",promises:"Safety, belonging, guarantee of love.",need:"Secure, unconditional acceptance.",
-  loop:`<span class="v3-only">Approval earned must be re-earned tomorrow ➔ identity stays fragile ➔ dependency on validation grows.</span><span class="v4-only">Earning approval requires continuous role-play (morphing). Because the love is given to the mask, not the self, the core identity remains starved.</span>`,
-  trap:`<span class="v3-only">“Just stop caring what people think.” Willpower trying to suppress a core relational hunger.</span><span class="v4-only">Attempting to suppress a fundamental human attachment drive using top-down prefrontal suppression.</span>`,
+  loop:`Approval earned must be re-earned tomorrow ➔ identity stays fragile ➔ dependency on validation grows.`,
+  trap:`“Just stop caring what people think.” Willpower trying to suppress a core relational hunger.`,
   grace:"Identity is already settled outside the room. Loving others from a secure standing, not to obtain one."}
 ];
 const flawTiles=document.getElementById('flaw-tiles'),flawPanelx=document.getElementById('flaw-panelx');
@@ -869,24 +799,24 @@ renderFlawPanel(FLAWS[0]);
 /* AXES DATA */
 const AXES=[
  {i:"🤝",t:"Acceptance vs Rejection",cue:"Feeling isolated, left out, or standard-deficient.",counterfeit:"Morph personality, say yes constantly, perform to fit in.",promises:"Safety, absolute belonging, guaranteed value.",need:"Unconditional, secure love and relational rest.",
-  loop:`<span class="v3-only">Earning acceptance is temporary ➔ identity stays fragile/insecure ➔ fear of rejection rises ➔ performance demand increases.</span><span class="v4-only">Operating under an identity transaction (introjected regulation). Because your acceptance is conditional on performance, your baseline anxiety never drops.</span>`,
-  trap:`<span class="v3-only">“Just love yourself / stop caring what others think.” Suppressing a core relational hunger with sheer willpower.</span><span class="v4-only">Using willpower to ignore your relational dependency, which is wired into your nervous system as a survival threat.</span>`,
+  loop:`Earning acceptance is temporary ➔ identity stays fragile/insecure ➔ fear of rejection rises ➔ performance demand increases.`,
+  trap:`“Just love yourself / stop caring what others think.” Suppressing a core relational hunger with sheer willpower.`,
   grace:"Belonging is given before you walk in the room. Love others from overflow, not to buy their verdict."},
  {i:"🌪️",t:"Control vs Chaos",cue:"Powerlessness, vulnerability, randomness, or high stakes.",counterfeit:"Anxious micromanaging, resource hoarding, obsessive checking.",promises:"Total predictability, safety from failure, anxiety-relief.",need:"Deep internal safety, peace, and trust in a protector.",
-  loop:`<span class="v3-only">Striving for control reveals your limitations ➔ anxiety spikes ➔ you double down on control/checking.</span><span class="v4-only">Willpower-based striving to manage all external variables. The brain processes any uncontrolled variable as a survival threat, escalating checking behaviors.</span>`,
-  trap:`<span class="v3-only">“Let go and stop worrying.” Forcing peace by ignoring reality.</span><span class="v4-only">Attempting to ignore real vulnerability through positive thinking. It fails once prefrontal control is exhausted by stress.</span>`,
+  loop:`Striving for control reveals your limitations ➔ anxiety spikes ➔ you double down on control/checking.`,
+  trap:`“Let go and stop worrying.” Forcing peace by ignoring reality.`,
   grace:"Surrendering outcomes to a sovereign, good Source; finding peace in trust, not in absolute certainty."},
  {i:"🌟",t:"Significance vs Insignificance",cue:"Anonymity, mediocrity, failure, or feeling forgotten.",counterfeit:"Workaholism, credentials-chasing, status-seeking, bragging.",promises:"Intrinsic value, status, proof that you matter.",need:"Secure worth that is entirely independent of output.",
-  loop:`<span class="v3-only">Success is transient ➔ value is tied to your next win ➔ fear of failure grows ➔ striving intensifies.</span><span class="v4-only">Sourcing identity in finite metrics (extrinsic regulation). Subjective cognitive fatigue rises as the opportunity cost of resting remains too high, triggering burnout.</span>`,
-  trap:`<span class="v3-only">“Just optimize your time; work harder to achieve significance.” Earning significance by exhausting yourself.</span><span class="v4-only">Using productivity heuristics and time management willpower to escape the fear of uselessness, keeping the works-treadmill running.</span>`,
+  loop:`Success is transient ➔ value is tied to your next win ➔ fear of failure grows ➔ striving intensifies.`,
+  trap:`“Just optimize your time; work harder to achieve significance.” Earning significance by exhausting yourself.`,
   grace:"Your value is an objective gift, defined by the Source. Act from significance, not for significance."},
  {i:"☕",t:"Comfort vs Suffering",cue:"Emotional pain, stress, boredom, or hard feelings.",counterfeit:"Numbing out (scrolling, eating, substances), procrastination.",promises:"Anesthetic relief, escape, instant gratification.",need:"Real comfort, rest, and hope in the middle of pain.",
-  loop:`<span class="v3-only">Escape provides brief relief but leaves stress unsolved ➔ pressure builds ➔ anxiety rises ➔ numbing increases.</span><span class="v4-only">The dopamine RPE peaks during the escape (anticipation) but drops below baseline when reality hits. The unresolved stress damages baseline emotional capacity, driving stronger cravings.</span>`,
-  trap:`<span class="v3-only">“Practice extreme asceticism / white-knuckle through the pain.” Fight the escape with pure grit.</span><span class="v4-only">Fighting a stress-soothing habit using self-denial grit. The self-inflicted stress of rules-striving downregulates the PFC, triggering relapse.</span>`,
+  loop:`Escape provides brief relief but leaves stress unsolved ➔ pressure builds ➔ anxiety rises ➔ numbing increases.`,
+  trap:`“Practice extreme asceticism / white-knuckle through the pain.” Fight the escape with pure grit.`,
   grace:"Comfort that meets you in the suffering. Grieve and feel honestly, sustained by a source that holds you."},
  {i:"🛡️",t:"Righteousness vs Condemnation",cue:"Guilt, moral slip, or feeling 'unclean' or bad.",counterfeit:"Scrupulosity, moral superiority, judging others' flaws.",promises:"Absolution, moral security, feeling clean.",need:"Pardon, clean conscience, standing before a standard.",
-  loop:`<span class="v3-only">Focus on self-precision exposes more flaws ➔ guilt rises ➔ you judge others or add rules to feel clean.</span><span class="v4-only">Focusing on your own moral perfection (Law) highlights your shortfalls. The guilt acts as a stressor, promoting defensiveness and scrupulosity.</span>`,
-  trap:`<span class="v3-only">“Be more moral / strictly adhere to the law.” Willpower trying to cleanse a stained conscience.</span><span class="v4-only">Willpower attempting to cleanse a stained conscience through ethical performance. This is the ultimate religious Works treadmill.</span>`,
+  loop:`Focus on self-precision exposes more flaws ➔ guilt rises ➔ you judge others or add rules to feel clean.`,
+  trap:`“Be more moral / strictly adhere to the law.” Willpower trying to cleanse a stained conscience.`,
   grace:"Imputed righteousness. Stand on 'no condemnation' first; actual goodness flows from a clean, secure heart."}
 ];
 const axisTiles=document.getElementById('axis-tiles'),axisPanelx=document.getElementById('axis-panelx');
@@ -916,10 +846,8 @@ const note=document.getElementById('loopNote'),ring=document.getElementById('rin
  gA=document.getElementById('graceArrow'),gL=document.getElementById('graceLbl'),
  tgl=document.getElementById('loopToggle');
 const NOTES={
- force:`<span class="v3-only"><b>By force.</b> You attack the routine with willpower. But the loop is largely automatic, so effort mostly feeds the shame — and shame is itself a cue back into the counterfeit. The cure becomes the disease. <span class="tag text">Romans 7</span></span>
-        <span class="v4-only"><b>By force (Willpower).</b> You attempt to suppress the DLS habit loop using top-down PFC control. Because this effort is driven by shame, it acts as a stressor, triggering cortisol/catecholamine release that downregulates the PFC. The attempt to override the habit fails, and the guilt feeds the cue. <span class="tag text">Rom 7</span></span>`,
- grace:`<span class="v3-only"><b>By grace.</b> You don’t out-muscle the ring; you step out of it — taking the <em>real need</em> at the top to a source that actually fills it. The need stops feeding the counterfeit, so the loop loses its fuel.</span>
-        <span class="v4-only"><b>By grace (Re-sourcing).</b> You do not attempt to suppress the loop through cognitive grit. Instead, you address the baseline threat/need by anchoring your worth in a received standing. The opportunity cost of avoiding the counterfeit falls, leaving the DLS habit unfueled.</span>`
+ force:`<b>By force.</b> You attack the routine with willpower. But the loop is largely automatic, so effort mostly feeds the shame — and shame is itself a cue back into the counterfeit. The cure becomes the disease. <span class="tag text">Romans 7</span></span>`,
+ grace:`<b>By grace.</b> You don’t out-muscle the ring; you step out of it — taking the <em>real need</em> at the top to a source that actually fills it. The need stops feeding the counterfeit, so the loop loses its fuel.`
 };
 note.innerHTML=NOTES.force;
 tgl.addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;
@@ -939,26 +867,19 @@ if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
 /* CASES */
 const CASES=[
  {ref:"JOHN 4:1–26",title:"The woman at the well",pill:"the metaphor, literal",
-  body:`<p class="v3-only">She comes to a literal well at noon, alone — and has had five husbands, looking for in people what they couldn’t hold. <span class="tag text">from the text</span> Jesus offers “living water,” a spring that ends the daily trip. The whole page’s metaphor, acted out: counterfeit wells you keep returning to vs. a source that satisfies.</p>
-        <p class="v4-only">Jesus offers "living water"—a self-replenishing spring (<em>māqôr</em>) that ends her daily trip to a stagnant cistern (<em>bôr</em>). <span class="tag text">from the text</span> While homiletically applied to serial relationship codependency (her five husbands), first-century context suggests she was likely a victim of multiple abandonments or tragedies beyond her control. Eastern Orthodox tradition venerates her as <strong>St. Photini</strong>, a powerful evangelist and martyr, highlighting her immediate theological and apostolic transformation.</p>`},
+  body:`<p>She comes to a literal well at noon, alone — and has had five husbands, looking for in people what they couldn’t hold. <span class="tag text">from the text</span> Jesus offers “living water,” a spring that ends the daily trip. The whole page’s metaphor, acted out: counterfeit wells you keep returning to vs. a source that satisfies.</p>`},
  {ref:"ROMANS 7:15–24",title:"The wretched man",pill:"willpower / shame loop",
-  body:`<p class="v3-only">The “I” who does the evil it doesn’t want and not the good it wants — then cries, “who will rescue me?” The loop in its purest scriptural form <span class="tag text">from the text</span>. The hinge is the next breath, Rom 8:1: <em>no condemnation</em> — shame fuel removed, source swapped. 7→8 is works→grace in two verses.</p>
-        <p class="v4-only">The "I" who does the evil it hates is the classic scriptural picture of the willpower-shame loop. <span class="tag text">from the text</span> Reformed scholars view this as the regenerate Christian's ongoing battle with indwelling sin; Patristic, Eastern Orthodox, and Wesleyan traditions interpret it as the unregenerate person trying to keep the Law in the flesh. Either way, the escape hatch is Romans 8:1: <em>no condemnation</em>—removing the shame stressor that disables the prefrontal cortex, swapping the source from flesh to Spirit.</p>`},
+  body:`<p>The “I” who does the evil it doesn’t want and not the good it wants — then cries, “who will rescue me?” The loop in its purest scriptural form <span class="tag text">from the text</span>. The hinge is the next breath, Rom 8:1: <em>no condemnation</em> — shame fuel removed, source swapped. 7→8 is works→grace in two verses.</p>`},
  {ref:"LUKE 15",title:"Both sons (prodigal & elder)",pill:"two cisterns",
-  body:`<p class="v3-only">The younger son is the obvious broken cistern — far country, counterfeit comfort, empty pods. The <em>elder</em> is the works cistern: “all these years I served you… yet you never gave me.” <span class="tag text">from the text</span> Religious and irreligious, both leaking, both far from the father — and the elder is angrier.</p>
-        <p class="v4-only">The younger son seeks life in the counterfeit well of license (prodigality); the elder son seeks life in the counterfeit well of self-righteous service ("All these years I served you..."). <span class="tag text">from the text</span> Both sons are estranged from the father; one is lost in open rebellion, the other in religious performance (Works). In Catholic/Orthodox readings, the father's final feast also embodies rich Eucharistic and sacramental grace.</p>`},
+  body:`<p>The younger son is the obvious broken cistern — far country, counterfeit comfort, empty pods. The <em>elder</em> is the works cistern: “all these years I served you… yet you never gave me.” <span class="tag text">from the text</span> Religious and irreligious, both leaking, both far from the father — and the elder is angrier.</p>`},
  {ref:"LUKE 18:9–14",title:"Pharisee & tax collector",pill:"works vs grace",
-  body:`<p class="v3-only">The Pharisee’s prayer is self-referential performance — “I fast, I tithe, I’m not like other men.” The tax collector simply receives mercy. <span class="tag text">from the text</span> The verdict is the grace move: <em>this</em> one went home justified. The comparison loop, named.</p>
-        <p class="v4-only">The Pharisee seeks justification in comparative covenant performance ("I fast, I tithe..."), whereas the tax collector simply begs for mercy. <span class="tag text">from the text</span> The tax collector goes home justified (<em>dedikaiōmenos</em>). In Protestant theology, this is forensic imputation; in Catholic and Orthodox theology, it is the initiation of real, cooperative righteousness. The Pharisee's error is pride in comparison, not a crude buying of salvation.</p>`},
+  body:`<p>The Pharisee’s prayer is self-referential performance — “I fast, I tithe, I’m not like other men.” The tax collector simply receives mercy. <span class="tag text">from the text</span> The verdict is the grace move: <em>this</em> one went home justified. The comparison loop, named.</p>`},
  {ref:"NUMBERS 11",title:"Israel craving Egypt",pill:"relapse to old comfort",
-  body:`<p class="v3-only">Freshly delivered by grace, they crave the fleshpots of Egypt — romanticizing slavery because it was <em>familiar</em>. <span class="tag text">from the text</span> The pull back to the old comfort behavior, dressed up as need.</p>
-        <p class="v4-only">Newly delivered into freedom, Israel craves Egypt's fleshpots because they were <em>predictable</em>. <span class="tag text">from the text</span> Under the stress of the wilderness, their prefrontal cortex downregulates, and the brain defaults to the familiar DLS (habitual) routines of slavery to cope with anxiety. Patristic writers used this to illustrate the <em>passions</em>—how the soul defaults to old comforts.</p>`},
+  body:`<p>Freshly delivered by grace, they crave the fleshpots of Egypt — romanticizing slavery because it was <em>familiar</em>. <span class="tag text">from the text</span> The pull back to the old comfort behavior, dressed up as need.</p>`},
  {ref:"JOHN 18 / 21",title:"Peter (vs Judas)",pill:"loop broken by grace",
-  body:`<p class="v3-only">Peter boasts in willpower (“though all fall away, I won’t”), fails three times, weeps. Restoration in John 21 is the tell: not “try harder” but three “do you love me?”s — identity re-sourced through relationship. <span class="tag text">from the text</span> Beside Judas: same failure, two ends — godly grief to life, worldly grief to death (2 Cor 7:10).</p>
-        <p class="v4-only">Peter boasts in top-down willpower ("I will not deny you"), fails, and falls into a shame spiral. Jesus restores him in John 21 by asking three times, "Do you love me?" <span class="tag text">from the text</span> Modern Johannine scholars point out <em>agapaō</em> and <em>phileō</em> are used here as stylistic synonyms. The three questions mirror his three denials, moving him from performance anxiety to a relational commission: "Feed my sheep." He is restored <em>for</em> a vocation, breaking the shame loop.</p>`},
+  body:`<p>Peter boasts in willpower (“though all fall away, I won’t”), fails three times, weeps. Restoration in John 21 is the tell: not “try harder” but three “do you love me?”s — identity re-sourced through relationship. <span class="tag text">from the text</span> Beside Judas: same failure, two ends — godly grief to life, worldly grief to death (2 Cor 7:10).</p>`},
  {ref:"LUKE 19:1–10",title:"Zacchaeus",pill:"grace before works",
-  body:`<p class="v3-only">Jesus comes to his house <em>first</em>; only then does the generosity pour out. <span class="tag text">from the text</span> Fruit follows reception — it doesn’t earn it. The order the whole “practicals” section depends on.</p>
-        <p class="v4-only">Jesus initiates the relationship by coming to his house <em>first</em>, preceding any repentance. <span class="tag text">from the text</span> Zacchaeus's transformation (giving half to the poor and restoring fourfold) flows from this received worth. Catholic/Orthodox theologians point to this as a key example of <em>synergia</em>—where human cooperation actively participates in the initial work of grace, showing that grace does not abolish effort but relocates its engine.</p>`}
+  body:`<p>Jesus comes to his house <em>first</em>; only then does the generosity pour out. <span class="tag text">from the text</span> Fruit follows reception — it doesn’t earn it. The order the whole “practicals” section depends on.</p>`}
 ];
 const cases=document.getElementById('cases');
 CASES.forEach(c=>{const d=document.createElement('div');d.className='case open';
